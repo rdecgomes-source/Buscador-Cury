@@ -1243,10 +1243,4 @@ const styles = {
     fontSize: "15px",
     fontWeight: "bold",
   },
-git init
-git add .
-git commit -m "primeira versão"
-git remote add origin https://github.com/rdecgomes-source/Buscador-Cury.git
-git branch -M main
-git push -u origin main
-
+};
