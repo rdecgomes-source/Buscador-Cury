@@ -7,7 +7,8 @@ export default function App() {
   const [mensagem, setMensagem] = useState(
     "Digite um CEP, bairro ou região para buscar empreendimentos."
   );
-  const [empreendimentoSelecionado, setEmpreendimentoSelecionado] = useState(null);
+  const [empreendimentoSelecionado, setEmpreendimentoSelecionado] =
+    useState(null);
 
   const empreendimentos = [
     {
@@ -723,7 +724,8 @@ export default function App() {
   };
 
   if (empreendimentoSelecionado) {
-    const detalhes = detalhesPorEmpreendimento[empreendimentoSelecionado.nome] || [];
+    const detalhes =
+      detalhesPorEmpreendimento[empreendimentoSelecionado.nome] || [];
 
     return (
       <div style={styles.page}>
@@ -739,22 +741,29 @@ export default function App() {
               <div style={styles.brandTop}>Detalhamento do empreendimento</div>
               <h1 style={styles.title}>{empreendimentoSelecionado.nome}</h1>
               <p style={styles.subtitle}>
-                Bairro: {empreendimentoSelecionado.bairro} • Região: {empreendimentoSelecionado.regiao}
+                Bairro: {empreendimentoSelecionado.bairro} • Região:{" "}
+                {empreendimentoSelecionado.regiao}
               </p>
             </div>
 
             <div style={styles.statsGrid}>
               <div style={styles.statCard}>
                 <span style={styles.statLabel}>Valor inicial</span>
-                <span style={styles.statValueSmall}>{empreendimentoSelecionado.precoTexto}</span>
+                <span style={styles.statValueSmall}>
+                  {empreendimentoSelecionado.precoTexto}
+                </span>
               </div>
               <div style={styles.statCard}>
                 <span style={styles.statLabel}>Metragem base</span>
-                <span style={styles.statValueSmall}>{empreendimentoSelecionado.metragemBase}</span>
+                <span style={styles.statValueSmall}>
+                  {empreendimentoSelecionado.metragemBase}
+                </span>
               </div>
               <div style={styles.statCard}>
                 <span style={styles.statLabel}>Entrega</span>
-                <span style={styles.statValueSmall}>{empreendimentoSelecionado.entrega}</span>
+                <span style={styles.statValueSmall}>
+                  {empreendimentoSelecionado.entrega}
+                </span>
               </div>
             </div>
           </div>
@@ -768,7 +777,8 @@ export default function App() {
               <div style={styles.emptyIcon}>📄</div>
               <h3 style={styles.emptyTitle}>Sem detalhamento cadastrado</h3>
               <p style={styles.emptyText}>
-                Este empreendimento ainda não teve as faixas de unidades lançadas na tela interna.
+                Este empreendimento ainda não teve as faixas de unidades
+                lançadas na tela interna.
               </p>
             </div>
           ) : (
@@ -790,7 +800,9 @@ export default function App() {
 
                   <div style={styles.detailRow}>
                     <span style={styles.detailLabel}>Enquadramento</span>
-                    <span style={styles.detailValue}>{item.enquadramento}</span>
+                    <span style={styles.detailValue}>
+                      {item.enquadramento}
+                    </span>
                   </div>
 
                   <div style={styles.detailRow}>
@@ -869,7 +881,10 @@ export default function App() {
             style={styles.input}
           />
 
-          <button onClick={buscarEmpreendimentos} style={styles.primaryButton}>
+          <button
+            onClick={buscarEmpreendimentos}
+            style={styles.primaryButton}
+          >
             Buscar
           </button>
 
@@ -885,8 +900,8 @@ export default function App() {
             <div style={styles.emptyIcon}>🏢</div>
             <h3 style={styles.emptyTitle}>Pronto para consultar</h3>
             <p style={styles.emptyText}>
-              Pesquise por Mooca, Barra Funda, Campo Limpo, Santo André, Tatuapé,
-              Sacomã ou por CEP.
+              Pesquise por Mooca, Barra Funda, Campo Limpo, Santo André,
+              Tatuapé, Sacomã ou por CEP.
             </p>
           </div>
         ) : (
@@ -907,7 +922,9 @@ export default function App() {
 
                   <div style={styles.infoRow}>
                     <span style={styles.infoLabel}>Faixa CEP</span>
-                    <span style={styles.infoValue}>{item.faixaCep}xxx-xxx</span>
+                    <span style={styles.infoValue}>
+                      {item.faixaCep}xxx-xxx
+                    </span>
                   </div>
 
                   <div style={styles.infoRow}>
@@ -932,7 +949,11 @@ export default function App() {
 
                 <button
                   onClick={() => abrirDetalhes(item)}
-                  style={{ ...styles.primaryButton, marginTop: 16, width: "100%" }}
+                  style={{
+                    ...styles.primaryButton,
+                    marginTop: 16,
+                    width: "100%",
+                  }}
                 >
                   Ver unidades
                 </button>
