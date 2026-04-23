@@ -25,6 +25,7 @@ export default function App() {
   const empreendimentos = [
     {
       nome: "360º Park View",
+      endereco: "Endereço não informado",
       faixaCep: "05",
       bairro: "Zona Oeste",
       regiao: "Zona Oeste",
@@ -35,6 +36,7 @@ export default function App() {
     },
     {
       nome: "Alto São Domingos - Mutinga",
+      endereco: "Endereço não informado",
       faixaCep: "05",
       bairro: "São Domingos",
       regiao: "Zona Oeste",
@@ -45,6 +47,7 @@ export default function App() {
     },
     {
       nome: "Cidade Mooca - Duomo",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Mooca",
       regiao: "Zona Leste",
@@ -55,6 +58,7 @@ export default function App() {
     },
     {
       nome: "Cidade Mooca - Navona",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Mooca",
       regiao: "Zona Leste",
@@ -65,6 +69,7 @@ export default function App() {
     },
     {
       nome: "Cidade Mooca - Vila Capri",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Mooca",
       regiao: "Zona Leste",
@@ -75,6 +80,7 @@ export default function App() {
     },
     {
       nome: "Cidade Parque Guarapiranga - Condomínio Rio Bonito",
+      endereco: "Endereço não informado",
       faixaCep: "04",
       bairro: "Guarapiranga",
       regiao: "Zona Sul",
@@ -85,6 +91,7 @@ export default function App() {
     },
     {
       nome: "Condomínio Residencial Dez Canindé",
+      endereco: "Endereço não informado",
       faixaCep: "01",
       bairro: "Canindé",
       regiao: "Zona Central/Leste",
@@ -95,6 +102,7 @@ export default function App() {
     },
     {
       nome: "Condomínio Residencial Dez Celeste",
+      endereco: "Endereço não informado",
       faixaCep: "04",
       bairro: "Zona Sul",
       regiao: "Zona Sul",
@@ -105,6 +113,7 @@ export default function App() {
     },
     {
       nome: "Condomínio Residencial Dez Tatuapé",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Tatuapé",
       regiao: "Zona Leste",
@@ -115,6 +124,7 @@ export default function App() {
     },
     {
       nome: "Connect São Mateus",
+      endereco: "Endereço não informado",
       faixaCep: "08",
       bairro: "São Mateus",
       regiao: "Zona Leste",
@@ -125,6 +135,7 @@ export default function App() {
     },
     {
       nome: "Connect São Mateus 2",
+      endereco: "Endereço não informado",
       faixaCep: "08",
       bairro: "São Mateus",
       regiao: "Zona Leste",
@@ -135,6 +146,7 @@ export default function App() {
     },
     {
       nome: "Dez Limão",
+      endereco: "Endereço não informado",
       faixaCep: "02",
       bairro: "Limão",
       regiao: "Zona Norte",
@@ -145,6 +157,7 @@ export default function App() {
     },
     {
       nome: "Green Lyne Pirituba",
+      endereco: "Endereço não informado",
       faixaCep: "02",
       bairro: "Pirituba",
       regiao: "Zona Norte",
@@ -155,6 +168,7 @@ export default function App() {
     },
     {
       nome: "Like Campo Limpo",
+      endereco: "Endereço não informado",
       faixaCep: "05",
       bairro: "Campo Limpo",
       regiao: "Zona Sul",
@@ -165,6 +179,7 @@ export default function App() {
     },
     {
       nome: "Lyne Campo Limpo",
+      endereco: "Endereço não informado",
       faixaCep: "05",
       bairro: "Campo Limpo",
       regiao: "Zona Sul",
@@ -175,6 +190,7 @@ export default function App() {
     },
     {
       nome: "Mérito Belenzinho",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Belenzinho",
       regiao: "Zona Leste",
@@ -185,6 +201,7 @@ export default function App() {
     },
     {
       nome: "Mérito Vila Mascote",
+      endereco: "Endereço não informado",
       faixaCep: "04",
       bairro: "Vila Mascote",
       regiao: "Zona Sul",
@@ -195,6 +212,7 @@ export default function App() {
     },
     {
       nome: "Modern Mooca",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Mooca",
       regiao: "Zona Leste",
@@ -205,6 +223,7 @@ export default function App() {
     },
     {
       nome: "My Sacomã",
+      endereco: "Endereço não informado",
       faixaCep: "04",
       bairro: "Sacomã",
       regiao: "Zona Sul",
@@ -215,6 +234,7 @@ export default function App() {
     },
     {
       nome: "Soul Miguel Yunes",
+      endereco: "Endereço não informado",
       faixaCep: "04",
       bairro: "Miguel Yunes",
       regiao: "Zona Sul",
@@ -225,6 +245,7 @@ export default function App() {
     },
     {
       nome: "Supreme Anália Franco",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Anália Franco",
       regiao: "Zona Leste",
@@ -235,6 +256,7 @@ export default function App() {
     },
     {
       nome: "Supreme Vila Romana",
+      endereco: "Endereço não informado",
       faixaCep: "05",
       bairro: "Vila Romana",
       regiao: "Zona Oeste",
@@ -245,6 +267,7 @@ export default function App() {
     },
     {
       nome: "Urban Tatuapé",
+      endereco: "Endereço não informado",
       faixaCep: "03",
       bairro: "Tatuapé",
       regiao: "Zona Leste",
@@ -255,6 +278,7 @@ export default function App() {
     },
     {
       nome: "Urban Vila Maria II",
+      endereco: "Endereço não informado",
       faixaCep: "02",
       bairro: "Vila Maria",
       regiao: "Zona Norte",
@@ -265,6 +289,7 @@ export default function App() {
     },
     {
       nome: "Yunes Park",
+      endereco: "Endereço não informado",
       faixaCep: "04",
       bairro: "Miguel Yunes",
       regiao: "Zona Sul",
@@ -409,6 +434,9 @@ export default function App() {
             <div style={{ marginTop: 18 }}>
               <div style={styles.brandTop}>Detalhamento do empreendimento</div>
               <h1 style={styles.titleInterna}>{empreendimentoSelecionado.nome}</h1>
+              <p style={styles.enderecoLinha}>
+                {empreendimentoSelecionado.endereco}
+              </p>
               <p style={styles.subtitle}>
                 Bairro: {empreendimentoSelecionado.bairro} • Região:{" "}
                 {empreendimentoSelecionado.regiao}
@@ -712,6 +740,13 @@ const styles = {
     fontSize: "20px",
     lineHeight: 1.18,
     color: "#0f172a",
+  },
+  enderecoLinha: {
+    margin: "8px 0 0",
+    color: "#475569",
+    fontSize: "14px",
+    fontWeight: "bold",
+    lineHeight: 1.4,
   },
   subtitle: {
     margin: "8px 0 0",
