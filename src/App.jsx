@@ -920,15 +920,25 @@ export default function App() {
       return;
     }
 
+    const termoSemZona = termo
+      .replace("zona norte", "norte")
+      .replace("zona sul", "sul")
+      .replace("zona leste", "leste")
+      .replace("zona oeste", "oeste")
+      .replace("zona central", "central")
+      .trim();
+
     let encontrados = empreendimentos.filter((item) => {
-      const bateCep =
-        cepLimpo.length >= 2 && item.faixaCep === cepLimpo.substring(0, 2);
+      const regiaoNormalizada = normalizarTexto(item.regiao);
+      const bairroNormalizado = normalizarTexto(item.bairro);
+      const nomeNormalizado = normalizarTexto(item.nome);
 
       const textoCompleto = normalizarTexto(
         [
           item.nome,
           item.construtora,
           item.regiao,
+          `zona ${item.regiao}`,
           item.bairro,
           item.endereco,
           item.numero,
@@ -939,9 +949,25 @@ export default function App() {
         ].join(" ")
       );
 
-      const bateTexto = textoCompleto.includes(termo);
+      const bateCep =
+        cepLimpo.length >= 2 && item.faixaCep === cepLimpo.substring(0, 2);
 
-      return bateCep || bateTexto;
+      const bateRegiao =
+        regiaoNormalizada.includes(termoSemZona) ||
+        termoSemZona.includes(regiaoNormalizada);
+
+      const bateBairro =
+        bairroNormalizado.includes(termo) ||
+        bairroNormalizado.includes(termoSemZona);
+
+      const bateNome =
+        nomeNormalizado.includes(termo) ||
+        nomeNormalizado.includes(termoSemZona);
+
+      const bateTexto =
+        textoCompleto.includes(termo) || textoCompleto.includes(termoSemZona);
+
+      return bateCep || bateRegiao || bateBairro || bateNome || bateTexto;
     });
 
     if (max) {
@@ -952,8 +978,10 @@ export default function App() {
     }
 
     encontrados.sort((a, b) => {
-      const precoA = Number(a.precoNumero || 0) || menorPrecoTipologias(a) || 999999999;
-      const precoB = Number(b.precoNumero || 0) || menorPrecoTipologias(b) || 999999999;
+      const precoA =
+        Number(a.precoNumero || 0) || menorPrecoTipologias(a) || 999999999;
+      const precoB =
+        Number(b.precoNumero || 0) || menorPrecoTipologias(b) || 999999999;
       return precoA - precoB;
     });
 
