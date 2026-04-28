@@ -26,6 +26,7 @@ export default function App() {
         "enderecoCompleto": "Belém",
         "faixaCep": "03",
         "status": "0",
+        "unidadesDisponiveis": "0",
         "entrega": "",
         "mcmv": "",
         "enquadramento": "",
@@ -46,6 +47,7 @@ export default function App() {
         "enderecoCompleto": "R. Joaquim Carlos, S/N - Belém - CEP 03019-000",
         "faixaCep": "03",
         "status": "5",
+        "unidadesDisponiveis": "5",
         "entrega": "01/09/2027",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -78,6 +80,7 @@ export default function App() {
         "enderecoCompleto": "R. Dona Ana Neri, 793 - Mooca/Cambuci - CEP 01522-000",
         "faixaCep": "01",
         "status": "6",
+        "unidadesDisponiveis": "6",
         "entrega": "01/06/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -110,6 +113,7 @@ export default function App() {
         "enderecoCompleto": "R. Lutecia, 1508 - Vila Carrão - CEP 03423-000",
         "faixaCep": "03",
         "status": "641",
+        "unidadesDisponiveis": "641",
         "entrega": "01/07/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -153,6 +157,7 @@ export default function App() {
         "enderecoCompleto": "R. Serra de Paracaina, S/N - Mooca - CEP 03107-020",
         "faixaCep": "03",
         "status": "35",
+        "unidadesDisponiveis": "35",
         "entrega": "01/06/2027",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -196,6 +201,7 @@ export default function App() {
         "enderecoCompleto": "R. Guapeva, S/N - Analia Franco - CEP 03333-010",
         "faixaCep": "03",
         "status": "3",
+        "unidadesDisponiveis": "3",
         "entrega": "01/02/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -228,6 +234,7 @@ export default function App() {
         "enderecoCompleto": "R. Eneias Luis Carlos Barbanti, 392 - Fraguesia do Ó - CEP 02911-000",
         "faixaCep": "02",
         "status": "502",
+        "unidadesDisponiveis": "502",
         "entrega": "01/03/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -260,6 +267,7 @@ export default function App() {
         "enderecoCompleto": "Av. Do Anastacio, 740 - Pirituba/Cyti Aerica - CEP 05119-000",
         "faixaCep": "05",
         "status": "154",
+        "unidadesDisponiveis": "154",
         "entrega": "01/01/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -292,6 +300,7 @@ export default function App() {
         "enderecoCompleto": "Av. Mutinga, S/N - Pirituba - CEP 05154-000",
         "faixaCep": "05",
         "status": "24",
+        "unidadesDisponiveis": "24",
         "entrega": "01/11/2027",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -335,6 +344,7 @@ export default function App() {
         "enderecoCompleto": "Av. Corifeu de Azevedo Marques, S/N - Vl. Lageado - CEP 05339-001",
         "faixaCep": "05",
         "status": "24",
+        "unidadesDisponiveis": "24",
         "entrega": "01/01/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -367,6 +377,7 @@ export default function App() {
         "enderecoCompleto": "Av. Rio Pequeno, S/N - Rio Pequeno - CEP 05379-00",
         "faixaCep": "05",
         "status": "67",
+        "unidadesDisponiveis": "67",
         "entrega": "01/07/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -399,6 +410,7 @@ export default function App() {
         "enderecoCompleto": "R. Clelia, 1030 - Agua Brnaca - CEP 05442-00",
         "faixaCep": "05",
         "status": "104",
+        "unidadesDisponiveis": "104",
         "entrega": "01/01/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -431,6 +443,7 @@ export default function App() {
         "enderecoCompleto": "R. Santo Eurilo, 296 - Jaguaré - CEP 05345-040",
         "faixaCep": "05",
         "status": "177",
+        "unidadesDisponiveis": "177",
         "entrega": "01/11/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -474,6 +487,7 @@ export default function App() {
         "enderecoCompleto": "R. Bartolomeu Paes, 255 - Lapa/Vila anastacio - CEP 05092-000",
         "faixaCep": "05",
         "status": "536",
+        "unidadesDisponiveis": "536",
         "entrega": "01/01/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -506,6 +520,7 @@ export default function App() {
         "enderecoCompleto": "R. Barra Funda, 900 - Barra Funda - CEP 01150-000",
         "faixaCep": "01",
         "status": "647",
+        "unidadesDisponiveis": "647",
         "entrega": "01/03/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -538,6 +553,7 @@ export default function App() {
         "enderecoCompleto": "R. Barra Funda, 930 - Barra Funda - CEP 01152-000",
         "faixaCep": "01",
         "status": "60",
+        "unidadesDisponiveis": "60",
         "entrega": "01/11/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -570,6 +586,7 @@ export default function App() {
         "enderecoCompleto": "Jaguaré",
         "faixaCep": "05",
         "status": "0",
+        "unidadesDisponiveis": "0",
         "entrega": "",
         "mcmv": "SIM",
         "enquadramento": "",
@@ -590,6 +607,7 @@ export default function App() {
         "enderecoCompleto": "Av. Torres de Oliveira, S/N - Jaguaré - CEP 05347-020",
         "faixaCep": "05",
         "status": "17",
+        "unidadesDisponiveis": "17",
         "entrega": "01/05/2028",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -622,6 +640,7 @@ export default function App() {
         "enderecoCompleto": "Jaguaré",
         "faixaCep": "05",
         "status": "0",
+        "unidadesDisponiveis": "0",
         "entrega": "01/11/2027",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -642,6 +661,7 @@ export default function App() {
         "enderecoCompleto": "Av. Onofrio Milani, S/N - Jaguaré - CEP 05348-030",
         "faixaCep": "05",
         "status": "553",
+        "unidadesDisponiveis": "553",
         "entrega": "01/04/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -674,6 +694,7 @@ export default function App() {
         "enderecoCompleto": "R. Comendador Souza, 194 - Agua Branca - CEP 05037-090",
         "faixaCep": "05",
         "status": "721",
+        "unidadesDisponiveis": "721",
         "entrega": "01/12/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -706,6 +727,7 @@ export default function App() {
         "enderecoCompleto": "Vila Leopoldina",
         "faixaCep": "05",
         "status": "0",
+        "unidadesDisponiveis": "0",
         "entrega": "",
         "mcmv": "",
         "enquadramento": "",
@@ -726,6 +748,7 @@ export default function App() {
         "enderecoCompleto": "Av. Do Rio Bonito, 57 - Socorro - CEP 04776-000",
         "faixaCep": "04",
         "status": "1",
+        "unidadesDisponiveis": "1",
         "entrega": "01/09/2029",
         "mcmv": "SIM",
         "enquadramento": "",
@@ -746,6 +769,7 @@ export default function App() {
         "enderecoCompleto": "R. Braganca Paulista, 845 - Vl. Cruzeiro - CEP 04727-000",
         "faixaCep": "04",
         "status": "241",
+        "unidadesDisponiveis": "241",
         "entrega": "01/05/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -778,6 +802,7 @@ export default function App() {
         "enderecoCompleto": "R. Luiz Seraphico Junior, 326 - Jd. Caravelas - CEP 04729-080",
         "faixaCep": "04",
         "status": "295",
+        "unidadesDisponiveis": "295",
         "entrega": "01/02/2029",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -821,6 +846,7 @@ export default function App() {
         "enderecoCompleto": "R. Dr. Djalma Pinheiro Franco, S/N - Vl. Santa Catarina - CEP 04368-006",
         "faixaCep": "04",
         "status": "7",
+        "unidadesDisponiveis": "7",
         "entrega": "01/11/2027",
         "mcmv": "SIM",
         "enquadramento": "HIS1-HIS2-R2V",
@@ -897,6 +923,42 @@ export default function App() {
         return `${t.tipologia || "Tipologia"} • ${area} • Varanda: ${t.varanda || "Não informado"} • Vaga: ${t.vaga || "Não informado"} • ${t.precoTexto || "Preço não informado"}`;
       })
       .join(" | ");
+  };
+
+
+  const formatarOpcao = (valor) => {
+    const texto = String(valor || "").trim();
+    const normalizado = normalizarTexto(texto);
+
+    if (!texto || texto === "0") return "Não";
+    if (normalizado === "opcao") return "Opção";
+    if (normalizado === "sim") return "Sim";
+    if (normalizado === "nao") return "Não";
+
+    return texto;
+  };
+
+  const renderTipologias = (item) => {
+    if (!item.tipologias || item.tipologias.length === 0) {
+      return <div style={styles.tipoLinha}>Tipologias não cadastradas</div>;
+    }
+
+    return item.tipologias.map((t, index) => {
+      const area =
+        t.areaMin && t.areaMax
+          ? `${String(t.areaMin).replace(".", ",")} a ${String(t.areaMax).replace(".", ",")} m²`
+          : t.areaMin
+          ? `${String(t.areaMin).replace(".", ",")} m²`
+          : "área não informada";
+
+      return (
+        <div key={index} style={styles.tipoLinha}>
+          <strong>{t.tipologia || "Tipologia"}</strong> • {area} • Varanda:{" "}
+          {formatarOpcao(t.varanda)} • Vaga: {formatarOpcao(t.vaga)} •{" "}
+          {t.precoTexto || "Preço não informado"}
+        </div>
+      );
+    });
   };
 
   const menorPrecoTipologias = (item) => {
@@ -1082,6 +1144,16 @@ export default function App() {
                   {empreendimentoSelecionado.entrega || "Não informada"}
                 </span>
               </div>
+
+              <div style={styles.statCard}>
+                <span style={styles.statLabel}>Unidades disponíveis</span>
+                <span style={styles.statValueSmall}>
+                  {empreendimentoSelecionado.unidadesDisponiveis &&
+                  empreendimentoSelecionado.unidadesDisponiveis !== "0"
+                    ? empreendimentoSelecionado.unidadesDisponiveis
+                    : "Não informado"}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -1117,14 +1189,14 @@ export default function App() {
                   <div style={styles.detailRow}>
                     <span style={styles.detailLabel}>Varanda</span>
                     <span style={styles.detailValue}>
-                      {item.varanda || "Não informado"}
+                      {formatarOpcao(item.varanda)}
                     </span>
                   </div>
 
                   <div style={styles.detailRow}>
                     <span style={styles.detailLabel}>Vaga / Garagem</span>
                     <span style={styles.detailValue}>
-                      {item.vaga || "Não informado"}
+                      {formatarOpcao(item.vaga)}
                     </span>
                   </div>
 
@@ -1234,40 +1306,33 @@ export default function App() {
 
                 <h2 style={styles.cardTitle}>{item.nome}</h2>
 
-                <div style={styles.infoBlock}>
-                  <div style={styles.infoRowColumn}>
+                <div style={styles.infoBlockCentral}>
+                  <div style={styles.infoRowColumnCenter}>
                     <span style={styles.infoLabel}>Endereço</span>
-                    <span style={styles.infoValue}>
+                    <span style={styles.infoValueCenter}>
                       {item.enderecoCompleto}
                     </span>
                   </div>
 
-                  <div style={styles.infoRow}>
-                    <span style={styles.infoLabel}>Bairro</span>
-                    <span style={styles.infoValue}>
-                      {item.bairro || "Não informado"}
-                    </span>
-                  </div>
-
-                  <div style={styles.infoRow}>
-                    <span style={styles.infoLabel}>CEP / Faixa</span>
-                    <span style={styles.infoValue}>
-                      {item.cep || `${item.faixaCep}xxx-xxx`}
-                    </span>
-                  </div>
-
-                  <div style={styles.infoRow}>
+                  <div style={styles.infoRowCenter}>
                     <span style={styles.infoLabel}>Entrega</span>
-                    <span style={styles.infoValue}>
+                    <span style={styles.infoValueCenter}>
                       {item.entrega || "Não informada"}
                     </span>
                   </div>
 
-                  <div style={styles.infoRowColumn}>
-                    <span style={styles.infoLabel}>Tipologias</span>
-                    <span style={styles.infoValue}>
-                      {resumoTipologias(item)}
+                  <div style={styles.infoRowCenter}>
+                    <span style={styles.infoLabel}>Unidades disponíveis</span>
+                    <span style={styles.infoValueCenter}>
+                      {item.unidadesDisponiveis && item.unidadesDisponiveis !== "0"
+                        ? item.unidadesDisponiveis
+                        : "Não informado"}
                     </span>
+                  </div>
+
+                  <div style={styles.infoRowColumnCenter}>
+                    <span style={styles.infoLabel}>Tipologias</span>
+                    <div style={styles.tipoBox}>{renderTipologias(item)}</div>
                   </div>
                 </div>
 
