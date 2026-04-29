@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQOCZw-pVQqeiSgsuIG17bt0yr4KWZMCDgSo6aVvOYOvDLuwsgcfKmlIsSUSCSc_5HwcgFA7AsYyze/pub?output=csv";
 
 export default function App() {
-  const [empreendimentos, setEmpreendimentos] = useState([]);
+  const [senha, setSenha] = useState("");
+  const [liberado, setLiberado] = useState(false);
   const [busca, setBusca] = useState("");
-  const [carregando, setCarregando] = useState(true);
+  const [empreendimentos, setEmpreendimentos] = useState([]);
+  const [resultados, setResultados] = useState([]);
+  const [mensagem, setMensagem] = useState("Digite um CEP, bairro, região ou empreendimento para buscar.");
+  const senhaCorreta = "1234";
 
   useEffect(() => {
-    fetch(CSV_URL + "&t=" + new Date().getTime())
+    fetch(CSV_URL + "&t=" + Date.now())
       .then((res) => res.text())
       .then((csv) => {
         const linhas = csv.trim().split("\n").map((linha) =>
@@ -20,14 +24,14 @@ export default function App() {
 
         const cabecalho = linhas[0];
 
-        const pegar = (linha, nomeColuna) => {
-          const index = cabecalho.findIndex(
-            (c) => c.toLowerCase().trim() === nomeColuna.toLowerCase().trim()
+        const pegar = (linha, nome) => {
+          const i = cabecalho.findIndex(
+            (c) => c.toLowerCase().trim() === nome.toLowerCase().trim()
           );
-          return index >= 0 ? linha[index] || "" : "";
+          return i >= 0 ? linha[i] || "" : "";
         };
 
-        const dados = linhas.slice(1).map((linha) => ({
+        const lista = linhas.slice(1).map((linha) => ({
           nome: pegar(linha, "Empreendimento"),
           construtora: pegar(linha, "Construtora"),
           regiao: pegar(linha, "Região"),
@@ -38,26 +42,74 @@ export default function App() {
           unidades: pegar(linha, "Status"),
           entrega: pegar(linha, "Data de Entrega"),
           mcmv: pegar(linha, "Aceita MCMV"),
-        }));
+        })).filter((e) => e.nome);
 
-        setEmpreendimentos(dados.filter((e) => e.nome));
-        setCarregando(false);
+        setEmpreendimentos(lista);
       });
   }, []);
 
-  const normalizar = (texto) =>
-    String(texto || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+  const total = useMemo(() => empreendimentos.length, [empreendimentos]);
 
-  const resultados = empreendimentos.filter((e) => {
-    const termo = normalizar(busca);
-    const texto = normalizar(
-      `${e.nome} ${e.regiao} ${e.bairro} ${e.endereco} ${e.cep}`
+  const normalizar = (v) =>
+    String(v || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+  const verificarSenha = () => {
+    if (senha === senhaCorreta) setLiberado(true);
+    else alert("Senha incorreta");
+  };
+
+  const buscar = () => {
+    const termo = normalizar(busca.trim());
+
+    if (!termo) {
+      setResultados([]);
+      setMensagem("Digite um CEP, bairro, região ou empreendimento para buscar.");
+      return;
+    }
+
+    const termoSemZona = termo.replace("zona ", "");
+
+    const encontrados = empreendimentos.filter((e) => {
+      const texto = normalizar(
+        `${e.nome} ${e.regiao} zona ${e.regiao} ${e.bairro} ${e.endereco} ${e.cep}`
+      );
+      return texto.includes(termo) || texto.includes(termoSemZona);
+    });
+
+    setResultados(encontrados);
+    setMensagem(
+      encontrados.length
+        ? `Encontramos ${encontrados.length} empreendimento(s).`
+        : "Nenhum empreendimento encontrado."
     );
-    return texto.includes(termo);
-  });
+  };
+
+  const limpar = () => {
+    setBusca("");
+    setResultados([]);
+    setMensagem("Digite um CEP, bairro, região ou empreendimento para buscar.");
+  };
+
+  if (!liberado) {
+    return (
+      <div style={styles.loginPage}>
+        <div style={styles.loginBox}>
+          <h2>🔐 Acesso Restrito</h2>
+          <input
+            type="password"
+            placeholder="Digite a senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && verificarSenha()}
+            style={styles.input}
+          />
+          <button onClick={verificarSenha} style={styles.primaryButton}>
+            Entrar
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={styles.page}>
@@ -72,48 +124,37 @@ export default function App() {
         </div>
 
         <div style={styles.box}>
-          <strong>Empreendimentos</strong>
-          <h2>{empreendimentos.length}</h2>
+          <span>Empreendimentos cadastrados</span>
+          <h2>{total}</h2>
         </div>
 
-        <input
-          placeholder="Digite CEP, bairro, região ou nome do empreendimento"
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          style={styles.input}
-        />
+        <div style={styles.searchBox}>
+          <input
+            placeholder="Digite CEP, bairro, região ou nome do empreendimento"
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && buscar()}
+            style={styles.input}
+          />
 
-        {carregando ? (
-          <div style={styles.message}>Carregando planilha...</div>
-        ) : (
-          <div style={styles.message}>
-            {resultados.length} empreendimento(s) encontrado(s)
+          <div style={styles.buttonRow}>
+            <button onClick={buscar} style={styles.primaryButton}>Buscar</button>
+            <button onClick={limpar} style={styles.secondaryButton}>Limpar</button>
           </div>
-        )}
+        </div>
+
+        <div style={styles.message}>{mensagem}</div>
 
         {resultados.map((e, i) => (
           <div key={i} style={styles.card}>
-            <span style={styles.badge}>{e.regiao}</span>
+            <span style={styles.badge}>{e.regiao || "Região não informada"}</span>
 
             <h2 style={styles.cardTitle}>{e.nome}</h2>
 
-            <p>
-              <strong>Endereço:</strong> {e.endereco} {e.numero} - {e.bairro} - CEP{" "}
-              {e.cep}
-            </p>
-
-            <p>
-              <strong>Entrega:</strong> {e.entrega || "Não informada"}
-            </p>
-
-            <p>
-              <strong>Unidades disponíveis:</strong>{" "}
-              {e.unidades || "Não informado"}
-            </p>
-
-            <p>
-              <strong>Aceita MCMV:</strong> {e.mcmv || "Não informado"}
-            </p>
+            <p><strong>Endereço:</strong> {e.endereco} {e.numero} - {e.bairro} - CEP {e.cep}</p>
+            <p><strong>Entrega:</strong> {e.entrega || "Não informada"}</p>
+            <p><strong>Unidades disponíveis:</strong> {e.unidades || "Não informado"}</p>
+            <p><strong>Aceita MCMV:</strong> {e.mcmv || "Não informado"}</p>
           </div>
         ))}
       </div>
@@ -122,96 +163,23 @@ export default function App() {
 }
 
 const styles = {
-  page: {
-    minHeight: "100vh",
-    background:
-      "linear-gradient(180deg, #0f3d91 0%, #1e63d6 14%, #f4f7fb 14%, #f4f7fb 100%)",
-    padding: "16px",
-    fontFamily: "Arial, sans-serif",
-  },
-  container: {
-    maxWidth: "1000px",
-    margin: "0 auto",
-  },
-  header: {
-    background: "#fff",
-    borderRadius: "22px",
-    padding: "20px",
-    display: "flex",
-    gap: "14px",
-    alignItems: "center",
-    boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
-    marginBottom: "16px",
-  },
-  logo: {
-    width: "54px",
-    height: "54px",
-    borderRadius: "14px",
-    background: "#0f3d91",
-    color: "#fff",
-    fontSize: "28px",
-    fontWeight: "bold",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  sub: {
-    fontSize: "11px",
-    color: "#64748b",
-    textTransform: "uppercase",
-  },
-  title: {
-    margin: "4px 0",
-    fontSize: "24px",
-    color: "#0f172a",
-  },
-  text: {
-    margin: 0,
-    color: "#64748b",
-  },
-  box: {
-    background: "#fff",
-    borderRadius: "18px",
-    padding: "18px",
-    textAlign: "center",
-    marginBottom: "14px",
-    border: "1px solid #d8e4f8",
-  },
-  input: {
-    width: "100%",
-    padding: "14px",
-    borderRadius: "14px",
-    border: "1px solid #cfdced",
-    fontSize: "16px",
-    marginBottom: "14px",
-    boxSizing: "border-box",
-  },
-  message: {
-    background: "#fff",
-    borderRadius: "14px",
-    padding: "12px",
-    textAlign: "center",
-    fontWeight: "bold",
-    marginBottom: "14px",
-  },
-  card: {
-    background: "#fff",
-    borderRadius: "20px",
-    padding: "18px",
-    marginBottom: "14px",
-    boxShadow: "0 12px 26px rgba(0,0,0,0.07)",
-    textAlign: "center",
-  },
-  badge: {
-    background: "#e8f0ff",
-    color: "#0f3d91",
-    padding: "8px 12px",
-    borderRadius: "999px",
-    fontSize: "12px",
-    fontWeight: "bold",
-  },
-  cardTitle: {
-    color: "#0f172a",
-    marginTop: "14px",
-  },
+  loginPage: { minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#f3f5f9", padding: 20 },
+  loginBox: { background: "#fff", padding: 24, borderRadius: 20, width: "100%", maxWidth: 360, textAlign: "center" },
+  page: { minHeight: "100vh", background: "linear-gradient(180deg, #0f3d91 0%, #1e63d6 14%, #f4f7fb 14%, #f4f7fb 100%)", padding: 16, fontFamily: "Arial, sans-serif" },
+  container: { maxWidth: 1000, margin: "0 auto" },
+  header: { background: "#fff", borderRadius: 22, padding: 20, display: "flex", gap: 14, alignItems: "center", marginBottom: 16 },
+  logo: { width: 54, height: 54, borderRadius: 14, background: "#0f3d91", color: "#fff", fontSize: 28, fontWeight: "bold", display: "flex", alignItems: "center", justifyContent: "center" },
+  sub: { fontSize: 11, color: "#64748b", textTransform: "uppercase" },
+  title: { margin: "4px 0", fontSize: 24, color: "#0f172a" },
+  text: { margin: 0, color: "#64748b" },
+  box: { background: "#fff", borderRadius: 18, padding: 18, textAlign: "center", marginBottom: 14 },
+  searchBox: { background: "#fff", borderRadius: 18, padding: 14, marginBottom: 14 },
+  input: { width: "100%", padding: 14, borderRadius: 14, border: "1px solid #cfdced", fontSize: 16, marginBottom: 10, boxSizing: "border-box" },
+  buttonRow: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 },
+  primaryButton: { padding: 14, borderRadius: 14, border: "none", background: "#1455c8", color: "#fff", fontWeight: "bold", cursor: "pointer" },
+  secondaryButton: { padding: 14, borderRadius: 14, border: "1px solid #cfdced", background: "#fff", fontWeight: "bold", cursor: "pointer" },
+  message: { background: "#fff", borderRadius: 14, padding: 12, textAlign: "center", fontWeight: "bold", marginBottom: 14 },
+  card: { background: "#fff", borderRadius: 20, padding: 18, marginBottom: 14, textAlign: "center" },
+  badge: { background: "#e8f0ff", color: "#0f3d91", padding: "8px 12px", borderRadius: 999, fontSize: 12, fontWeight: "bold" },
+  cardTitle: { color: "#0f172a", marginTop: 14 },
 };
