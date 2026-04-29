@@ -179,15 +179,15 @@ export default function App() {
 
     let encontrados = [];
 
-    if (cepBusca && String(cepBusca).length >= 5) {
-      encontrados = empreendimentos
-        .filter((e) => e.cepNumero)
-        .map((e) => ({
-          ...e,
-          distanciaCep: Math.abs(Number(e.cepNumero) - Number(cepBusca)),
-        }))
-        .sort((a, b) => a.distanciaCep - b.distanciaCep)
-        .slice(0, 12);
+    if (cepBusca && String(cepBusca).length >= 2) {
+      const faixaCepBusca = String(cepBusca).substring(0, 2);
+
+      encontrados = empreendimentos.filter((e) => {
+        const cepEmpreendimento = String(e.cepNumero || "");
+        const faixaCepEmpreendimento = cepEmpreendimento.substring(0, 2);
+
+        return faixaCepEmpreendimento === faixaCepBusca;
+      });
 
       if (precoMax) {
         encontrados = encontrados.filter(
@@ -195,11 +195,17 @@ export default function App() {
         );
       }
 
+      encontrados.sort((a, b) => {
+        const pa = Number(a.precoNumero || 999999999);
+        const pb = Number(b.precoNumero || 999999999);
+        return pa - pb;
+      });
+
       setResultados(encontrados);
       setMensagem(
         encontrados.length
-          ? `Encontramos ${encontrados.length} empreendimento(s) mais próximos do CEP informado.`
-          : "Nenhum empreendimento encontrado para esse CEP."
+          ? `Encontramos ${encontrados.length} empreendimento(s) na mesma faixa inicial de CEP (${faixaCepBusca}).`
+          : "Nenhum empreendimento encontrado nessa faixa inicial de CEP."
       );
       return;
     }
