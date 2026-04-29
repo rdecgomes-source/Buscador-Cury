@@ -12,7 +12,7 @@ export default function App() {
   const [empreendimentoSelecionado, setEmpreendimentoSelecionado] =
     useState(null);
 
-  const senhaCorreta = "1234";
+  const senhaCorreta = "1234"; // altere aqui se quiser
 
   const verificarSenha = () => {
     if (senha === senhaCorreta) {
@@ -24,306 +24,498 @@ export default function App() {
 
   const empreendimentos = [
     {
-      nome: "360º Park View",
-      endereco: "Rua Exemplo, 100",
-      enderecoResumido: "Rua Exemplo, 100",
-      faixaCep: "05",
-      bairro: "Zona Oeste",
-      regiao: "Zona Oeste",
-      precoNumero: 297973,
-      precoTexto: "A partir de R$ 297 mil",
-      metragemBase: "36,8 m²",
-      entrega: "31/01/2028",
+        "nome": "Dez Belenzinho",
+        "endereco": "Endereço não informado",
+        "enderecoResumido": "Endereço não informado",
+        "faixaCep": "03",
+        "bairro": "Belém",
+        "regiao": "Zona Leste",
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada",
+        "entrega": "Não informada"
     },
     {
-      nome: "Alto São Domingos - Mutinga",
-      endereco: "Rua da Mutinga, 250",
-      enderecoResumido: "Rua da Mutinga, 250",
-      faixaCep: "05",
-      bairro: "São Domingos",
-      regiao: "Zona Oeste",
-      precoNumero: 275815,
-      precoTexto: "A partir de R$ 275 mil",
-      metragemBase: "34,45 m²",
-      entrega: "30/11/2027",
+        "nome": "Mérito Belenzinho",
+        "endereco": "R. Joaquim Carlos, S/N",
+        "enderecoResumido": "R. Joaquim Carlos, S/N",
+        "faixaCep": "03",
+        "bairro": "Belém",
+        "regiao": "Zona Leste",
+        "precoNumero": 255093,
+        "precoTexto": "A partir de R$ 255 mil",
+        "metragemBase": "34,37 m²",
+        "entrega": "01/09/2027"
     },
     {
-      nome: "Cidade Mooca - Duomo",
-      endereco: "Rua da Mooca, 1200",
-      enderecoResumido: "Rua da Mooca, 1200",
-      faixaCep: "03",
-      bairro: "Mooca",
-      regiao: "Zona Leste",
-      precoNumero: 264343,
-      precoTexto: "A partir de R$ 264 mil",
-      metragemBase: "34,34 m²",
-      entrega: "31/03/2027",
+        "nome": "Modern Mooca",
+        "endereco": "R. Dona Ana Neri, 793",
+        "enderecoResumido": "R. Dona Ana Neri, 793",
+        "faixaCep": "01",
+        "bairro": "Mooca/Cambuci",
+        "regiao": "Zona Leste",
+        "precoNumero": 375266,
+        "precoTexto": "A partir de R$ 375 mil",
+        "metragemBase": "41,61 m²",
+        "entrega": "01/06/2028"
     },
     {
-      nome: "Cidade Mooca - Navona",
-      endereco: "Rua da Mooca, 1220",
-      enderecoResumido: "Rua da Mooca, 1220",
-      faixaCep: "03",
-      bairro: "Mooca",
-      regiao: "Zona Leste",
-      precoNumero: 268055,
-      precoTexto: "A partir de R$ 268 mil",
-      metragemBase: "34,44 m²",
-      entrega: "30/06/2027",
+        "nome": "Novo Mundo Carrão II",
+        "endereco": "R. Lutecia, 1508",
+        "enderecoResumido": "R. Lutecia, 1508",
+        "faixaCep": "03",
+        "bairro": "Vila Carrão",
+        "regiao": "Zona Leste",
+        "precoNumero": 245000,
+        "precoTexto": "A partir de R$ 245 mil",
+        "metragemBase": "27,89 m²",
+        "entrega": "01/07/2029"
     },
     {
-      nome: "Cidade Mooca - Vila Capri",
-      endereco: "Rua da Mooca, 1240",
-      enderecoResumido: "Rua da Mooca, 1240",
-      faixaCep: "03",
-      bairro: "Mooca",
-      regiao: "Zona Leste",
-      precoNumero: 362971,
-      precoTexto: "A partir de R$ 362 mil",
-      metragemBase: "37,05 m²",
-      entrega: "31/12/2024",
+        "nome": "Cidade Mooca  - Navona",
+        "endereco": "R. Serra de Paracaina, S/N",
+        "enderecoResumido": "R. Serra de Paracaina, S/N",
+        "faixaCep": "03",
+        "bairro": "Mooca",
+        "regiao": "Zona Leste",
+        "precoNumero": 268055,
+        "precoTexto": "A partir de R$ 268 mil",
+        "metragemBase": "34,44 m²",
+        "entrega": "01/06/2027"
     },
     {
-      nome: "Cidade Parque Guarapiranga - Condomínio Rio Bonito",
-      endereco: "Estrada do Rio Bonito, 500",
-      enderecoResumido: "Estrada do Rio Bonito, 500",
-      faixaCep: "04",
-      bairro: "Guarapiranga",
-      regiao: "Zona Sul",
-      precoNumero: 525112,
-      precoTexto: "A partir de R$ 525 mil",
-      metragemBase: "48,86 m²",
-      entrega: "30/09/2029",
+        "nome": "Supreme Anália Franco",
+        "endereco": "R. Guapeva, S/N",
+        "enderecoResumido": "R. Guapeva, S/N",
+        "faixaCep": "03",
+        "bairro": "Analia Franco",
+        "regiao": "Zona Leste",
+        "precoNumero": 270000,
+        "precoTexto": "A partir de R$ 270 mil",
+        "metragemBase": "32,83 m²",
+        "entrega": "01/02/2028"
     },
     {
-      nome: "Condomínio Residencial Dez Canindé",
-      endereco: "Rua do Canindé, 85",
-      enderecoResumido: "Rua do Canindé, 85",
-      faixaCep: "01",
-      bairro: "Canindé",
-      regiao: "Zona Central/Leste",
-      precoNumero: 276102,
-      precoTexto: "A partir de R$ 276 mil",
-      metragemBase: "34,65 m²",
-      entrega: "23/11/2023",
+        "nome": "Marco freguesia",
+        "endereco": "R. Eneias Luis Carlos Barbanti, 392",
+        "enderecoResumido": "R. Eneias Luis Carlos Barbanti, 392",
+        "faixaCep": "02",
+        "bairro": "Fraguesia do Ó",
+        "regiao": "Zona Norte",
+        "precoNumero": 287857,
+        "precoTexto": "A partir de R$ 287 mil",
+        "metragemBase": "36,8 m²",
+        "entrega": "01/03/2029"
     },
     {
-      nome: "Condomínio Residencial Dez Celeste",
-      endereco: "Rua Celeste, 140",
-      enderecoResumido: "Rua Celeste, 140",
-      faixaCep: "04",
-      bairro: "Zona Sul",
-      regiao: "Zona Sul",
-      precoNumero: 236724,
-      precoTexto: "A partir de R$ 236 mil",
-      metragemBase: "34,99 m²",
-      entrega: "30/09/2024",
+        "nome": "Park View 360",
+        "endereco": "Av. Do Anastacio, 740",
+        "enderecoResumido": "Av. Do Anastacio, 740",
+        "faixaCep": "05",
+        "bairro": "Pirituba/Cyti Aerica",
+        "regiao": "Zona Norte",
+        "precoNumero": 297973,
+        "precoTexto": "A partir de R$ 297 mil",
+        "metragemBase": "36,8 m²",
+        "entrega": "01/01/2028"
     },
     {
-      nome: "Condomínio Residencial Dez Tatuapé",
-      endereco: "Rua do Tatuapé, 900",
-      enderecoResumido: "Rua do Tatuapé, 900",
-      faixaCep: "03",
-      bairro: "Tatuapé",
-      regiao: "Zona Leste",
-      precoNumero: 333300,
-      precoTexto: "A partir de R$ 333 mil",
-      metragemBase: "34,99 m²",
-      entrega: "31/10/2023",
+        "nome": "Alto São Domingos  - Mutinga",
+        "endereco": "Av. Mutinga, S/N",
+        "enderecoResumido": "Av. Mutinga, S/N",
+        "faixaCep": "05",
+        "bairro": "Pirituba",
+        "regiao": "Zona Norte",
+        "precoNumero": 275815,
+        "precoTexto": "A partir de R$ 275 mil",
+        "metragemBase": "34,45 m²",
+        "entrega": "01/11/2027"
     },
     {
-      nome: "Connect São Mateus",
-      endereco: "Avenida São Mateus, 1000",
-      enderecoResumido: "Avenida São Mateus, 1000",
-      faixaCep: "08",
-      bairro: "São Mateus",
-      regiao: "Zona Leste",
-      precoNumero: 271611,
-      precoTexto: "A partir de R$ 271 mil",
-      metragemBase: "34,19 m²",
-      entrega: "30/09/2025",
+        "nome": "Dez Butantã",
+        "endereco": "Av. Corifeu de Azevedo Marques, S/N",
+        "enderecoResumido": "Av. Corifeu de Azevedo Marques, S/N",
+        "faixaCep": "05",
+        "bairro": "Vl. Lageado",
+        "regiao": "Zona Oeste",
+        "precoNumero": 265420,
+        "precoTexto": "A partir de R$ 265 mil",
+        "metragemBase": "34,24 m²",
+        "entrega": "01/01/2028"
     },
     {
-      nome: "Connect São Mateus 2",
-      endereco: "Avenida São Mateus, 1020",
-      enderecoResumido: "Avenida São Mateus, 1020",
-      faixaCep: "08",
-      bairro: "São Mateus",
-      regiao: "Zona Leste",
-      precoNumero: 271611,
-      precoTexto: "A partir de R$ 271 mil",
-      metragemBase: "34,19 m²",
-      entrega: "29/05/2026",
+        "nome": "Singular Butantã",
+        "endereco": "Av. Rio Pequeno, S/N",
+        "enderecoResumido": "Av. Rio Pequeno, S/N",
+        "faixaCep": "05",
+        "bairro": "Rio Pequeno",
+        "regiao": "Zona Oeste",
+        "precoNumero": 281,
+        "precoTexto": "A partir de R$ 0 mil",
+        "metragemBase": "34,24 m²",
+        "entrega": "01/07/2028"
     },
     {
-      nome: "Dez Limão",
-      endereco: "Avenida do Limão, 300",
-      enderecoResumido: "Avenida do Limão, 300",
-      faixaCep: "02",
-      bairro: "Limão",
-      regiao: "Zona Norte",
-      precoNumero: 305685,
-      precoTexto: "A partir de R$ 305 mil",
-      metragemBase: "33,99 m²",
-      entrega: "30/06/2026",
+        "nome": "Supreme Vila Romana",
+        "endereco": "R. Clelia, 1030",
+        "enderecoResumido": "R. Clelia, 1030",
+        "faixaCep": "05",
+        "bairro": "Agua Brnaca",
+        "regiao": "Zona Oeste",
+        "precoNumero": 357834,
+        "precoTexto": "A partir de R$ 357 mil",
+        "metragemBase": "36,8 m²",
+        "entrega": "01/01/2029"
     },
     {
-      nome: "Green Lyne Pirituba",
-      endereco: "Rua de Pirituba, 450",
-      enderecoResumido: "Rua de Pirituba, 450",
-      faixaCep: "02",
-      bairro: "Pirituba",
-      regiao: "Zona Norte",
-      precoNumero: 373700,
-      precoTexto: "A partir de R$ 373 mil",
-      metragemBase: "39,01 m²",
-      entrega: "30/09/2024",
+        "nome": "Atmosfera  Jaguare",
+        "endereco": "R. Santo Eurilo, 296",
+        "enderecoResumido": "R. Santo Eurilo, 296",
+        "faixaCep": "05",
+        "bairro": "Jaguaré",
+        "regiao": "Zona Oeste",
+        "precoNumero": 220000,
+        "precoTexto": "A partir de R$ 220 mil",
+        "metragemBase": "24,13 m²",
+        "entrega": "01/11/2028"
     },
     {
-      nome: "Like Campo Limpo",
-      endereco: "Estrada do Campo Limpo, 880",
-      enderecoResumido: "Estrada do Campo Limpo, 880",
-      faixaCep: "05",
-      bairro: "Campo Limpo",
-      regiao: "Zona Sul",
-      precoNumero: 376817,
-      precoTexto: "A partir de R$ 376 mil",
-      metragemBase: "42,31 m²",
-      entrega: "30/04/2028",
+        "nome": "Mérito Lapa",
+        "endereco": "R. Bartolomeu Paes, 255",
+        "enderecoResumido": "R. Bartolomeu Paes, 255",
+        "faixaCep": "05",
+        "bairro": "Lapa/Vila anastacio",
+        "regiao": "Zona Oeste",
+        "precoNumero": 322050,
+        "precoTexto": "A partir de R$ 322 mil",
+        "metragemBase": "36,8 m²",
+        "entrega": "01/01/2029"
     },
     {
-      nome: "Lyne Campo Limpo",
-      endereco: "Estrada do Campo Limpo, 920",
-      enderecoResumido: "Estrada do Campo Limpo, 920",
-      faixaCep: "05",
-      bairro: "Campo Limpo",
-      regiao: "Zona Sul",
-      precoNumero: 607675,
-      precoTexto: "A partir de R$ 607 mil",
-      metragemBase: "56,31 m²",
-      entrega: "31/10/2027",
+        "nome": "Barra funda900",
+        "endereco": "R. Barra Funda, 900",
+        "enderecoResumido": "R. Barra Funda, 900",
+        "faixaCep": "01",
+        "bairro": "Barra Funda",
+        "regiao": "Zona Oeste",
+        "precoNumero": 292907,
+        "precoTexto": "A partir de R$ 292 mil",
+        "metragemBase": "32,5 m²",
+        "entrega": "01/03/2029"
     },
     {
-      nome: "Mérito Belenzinho",
-      endereco: "Rua do Belenzinho, 410",
-      enderecoResumido: "Rua do Belenzinho, 410",
-      faixaCep: "03",
-      bairro: "Belenzinho",
-      regiao: "Zona Leste",
-      precoNumero: 255093,
-      precoTexto: "A partir de R$ 255 mil",
-      metragemBase: "34,37 m²",
-      entrega: "30/09/2027",
+        "nome": "Barra funda930",
+        "endereco": "R. Barra Funda, 930",
+        "enderecoResumido": "R. Barra Funda, 930",
+        "faixaCep": "01",
+        "bairro": "Barra Funda",
+        "regiao": "Zona Oeste",
+        "precoNumero": 360000,
+        "precoTexto": "A partir de R$ 360 mil",
+        "metragemBase": "37,86 m²",
+        "entrega": "01/11/2028"
     },
     {
-      nome: "Mérito Vila Mascote",
-      endereco: "Avenida Vila Mascote, 760",
-      enderecoResumido: "Avenida Vila Mascote, 760",
-      faixaCep: "04",
-      bairro: "Vila Mascote",
-      regiao: "Zona Sul",
-      precoNumero: 505781,
-      precoTexto: "A partir de R$ 505 mil",
-      metragemBase: "46,26 m²",
-      entrega: "31/07/2027",
+        "nome": "Cidade Vila Lobos Sonata",
+        "endereco": "Endereço não informado",
+        "enderecoResumido": "Endereço não informado",
+        "faixaCep": "05",
+        "bairro": "Jaguaré",
+        "regiao": "Zona Oeste",
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada",
+        "entrega": "Não informada"
     },
     {
-      nome: "Modern Mooca",
-      endereco: "Rua da Mooca, 1500",
-      enderecoResumido: "Rua da Mooca, 1500",
-      faixaCep: "03",
-      bairro: "Mooca",
-      regiao: "Zona Leste",
-      precoNumero: 257000,
-      precoTexto: "A partir de R$ 257 mil",
-      metragemBase: "32 m²",
-      entrega: "30/06/2028",
+        "nome": "Cidade Vila Lobos - Maestro",
+        "endereco": "Av. Torres de Oliveira, S/N",
+        "enderecoResumido": "Av. Torres de Oliveira, S/N",
+        "faixaCep": "05",
+        "bairro": "Jaguaré",
+        "regiao": "Zona Oeste",
+        "precoNumero": 267910,
+        "precoTexto": "A partir de R$ 267 mil",
+        "metragemBase": "34,81 m²",
+        "entrega": "01/05/2028"
     },
     {
-      nome: "My Sacomã",
-      endereco: "Avenida do Sacomã, 700",
-      enderecoResumido: "Avenida do Sacomã, 700",
-      faixaCep: "04",
-      bairro: "Sacomã",
-      regiao: "Zona Sul",
-      precoNumero: 249716,
-      precoTexto: "A partir de R$ 249 mil",
-      metragemBase: "34,43 m²",
-      entrega: "29/02/2028",
+        "nome": "Cidade Vila Lobos -  Soprano",
+        "endereco": "Endereço não informado",
+        "enderecoResumido": "Endereço não informado",
+        "faixaCep": "05",
+        "bairro": "Jaguaré",
+        "regiao": "Zona Oeste",
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada",
+        "entrega": "01/11/2027"
     },
     {
-      nome: "Soul Miguel Yunes",
-      endereco: "Avenida Miguel Yunes, 100",
-      enderecoResumido: "Avenida Miguel Yunes, 100",
-      faixaCep: "04",
-      bairro: "Miguel Yunes",
-      regiao: "Zona Sul",
-      precoNumero: 180316,
-      precoTexto: "A partir de R$ 180 mil",
-      metragemBase: "23,23 m²",
-      entrega: "31/05/2027",
+        "nome": "Cidade Vila Lobos - Condominio Tenor",
+        "endereco": "Av. Onofrio Milani, S/N",
+        "enderecoResumido": "Av. Onofrio Milani, S/N",
+        "faixaCep": "05",
+        "bairro": "Jaguaré",
+        "regiao": "Zona Oeste",
+        "precoNumero": 251835,
+        "precoTexto": "A partir de R$ 251 mil",
+        "metragemBase": "32,42 m²",
+        "entrega": "01/04/2029"
     },
     {
-      nome: "Supreme Anália Franco",
-      endereco: "Rua Anália Franco, 230",
-      enderecoResumido: "Rua Anália Franco, 230",
-      faixaCep: "03",
-      bairro: "Anália Franco",
-      regiao: "Zona Leste",
-      precoNumero: 376581,
-      precoTexto: "A partir de R$ 376 mil",
-      metragemBase: "37,81 m²",
-      entrega: "29/02/2028",
+        "nome": "Lyne Agua Branca",
+        "endereco": "R. Comendador Souza, 194",
+        "enderecoResumido": "R. Comendador Souza, 194",
+        "faixaCep": "05",
+        "bairro": "Agua Branca",
+        "regiao": "Zona Oeste",
+        "precoNumero": 296000,
+        "precoTexto": "A partir de R$ 296 mil",
+        "metragemBase": "36,8 m²",
+        "entrega": "01/12/2029"
     },
     {
-      nome: "Supreme Vila Romana",
-      endereco: "Rua da Vila Romana, 640",
-      enderecoResumido: "Rua da Vila Romana, 640",
-      faixaCep: "05",
-      bairro: "Vila Romana",
-      regiao: "Zona Oeste",
-      precoNumero: 357834,
-      precoTexto: "A partir de R$ 357 mil",
-      metragemBase: "36,83 m²",
-      entrega: "31/01/2029",
+        "nome": "Nova Leopoldina",
+        "endereco": "Endereço não informado",
+        "enderecoResumido": "Endereço não informado",
+        "faixaCep": "05",
+        "bairro": "Vila Leopoldina",
+        "regiao": "Zona Oeste",
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada",
+        "entrega": "Não informada"
     },
     {
-      nome: "Urban Tatuapé",
-      endereco: "Rua Tuiuti, 150",
-      enderecoResumido: "Rua Tuiuti, 150",
-      faixaCep: "03",
-      bairro: "Tatuapé",
-      regiao: "Zona Leste",
-      precoNumero: 378272,
-      precoTexto: "A partir de R$ 378 mil",
-      metragemBase: "35,48 m²",
-      entrega: "01/02/2026",
+        "nome": "Cidade Parque Guarapiranga",
+        "endereco": "Av. Do Rio Bonito, 57",
+        "enderecoResumido": "Av. Do Rio Bonito, 57",
+        "faixaCep": "04",
+        "bairro": "Socorro",
+        "regiao": "Zona Sul",
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada",
+        "entrega": "01/09/2029"
     },
     {
-      nome: "Urban Vila Maria II",
-      endereco: "Avenida Vila Maria, 1110",
-      enderecoResumido: "Avenida Vila Maria, 1110",
-      faixaCep: "02",
-      bairro: "Vila Maria",
-      regiao: "Zona Norte",
-      precoNumero: 460072,
-      precoTexto: "A partir de R$ 460 mil",
-      metragemBase: "44,86 m²",
-      entrega: "30/04/2027",
+        "nome": "Praça Santo Antonio",
+        "endereco": "R. Braganca Paulista, 845",
+        "enderecoResumido": "R. Braganca Paulista, 845",
+        "faixaCep": "04",
+        "bairro": "Vl. Cruzeiro",
+        "regiao": "Zona Sul",
+        "precoNumero": 325000,
+        "precoTexto": "A partir de R$ 325 mil",
+        "metragemBase": "36,8 m²",
+        "entrega": "01/05/2029"
     },
     {
-      nome: "Yunes Park",
-      endereco: "Avenida Miguel Yunes, 220",
-      enderecoResumido: "Avenida Miguel Yunes, 220",
-      faixaCep: "04",
-      bairro: "Miguel Yunes",
-      regiao: "Zona Sul",
-      precoNumero: 181249,
-      precoTexto: "A partir de R$ 181 mil",
-      metragemBase: "23,23 m²",
-      entrega: "28/02/2027",
+        "nome": "Parque das Nações Laguna",
+        "endereco": "R. Luiz Seraphico Junior, 326",
+        "enderecoResumido": "R. Luiz Seraphico Junior, 326",
+        "faixaCep": "04",
+        "bairro": "Jd. Caravelas",
+        "regiao": "Zona Sul",
+        "precoNumero": 236012,
+        "precoTexto": "A partir de R$ 236 mil",
+        "metragemBase": "26,56 m²",
+        "entrega": "01/02/2029"
     },
-  ];
+    {
+        "nome": "Merito - Vila Mascote",
+        "endereco": "R. Dr. Djalma Pinheiro Franco, S/N",
+        "enderecoResumido": "R. Dr. Djalma Pinheiro Franco, S/N",
+        "faixaCep": "04",
+        "bairro": "Vl. Santa Catarina",
+        "regiao": "Zona Sul",
+        "precoNumero": 294914,
+        "precoTexto": "A partir de R$ 294 mil",
+        "metragemBase": "35 m²",
+        "entrega": "01/11/2027"
+    },
+    {
+        "nome": "Cidade Mooca - Duomo",
+        "endereco": "R. Serra de Paracaína, S/N",
+        "enderecoResumido": "R. Serra de Paracaína, S/N",
+        "faixaCep": "03",
+        "bairro": "Mooca",
+        "regiao": "Zona Leste",
+        "precoNumero": 264343,
+        "precoTexto": "A partir de R$ 264 mil",
+        "metragemBase": "34,6 m²",
+        "entrega": "01/03/2027"
+    },
+    {
+        "nome": "Cidade Mooca - Vila Capri",
+        "endereco": "R. da Mooca, 1300",
+        "enderecoResumido": "R. da Mooca, 1300",
+        "faixaCep": "03",
+        "bairro": "Mooca",
+        "regiao": "Zona Leste",
+        "precoNumero": 362971,
+        "precoTexto": "A partir de R$ 362 mil",
+        "metragemBase": "37,05 m²",
+        "entrega": "01/12/2024"
+    },
+    {
+        "nome": "Condomínio Residencial Dez Canindé",
+        "endereco": "R. Azurita, 48",
+        "enderecoResumido": "R. Azurita, 48",
+        "faixaCep": "03",
+        "bairro": "Canindé",
+        "regiao": "Zona Sul",
+        "precoNumero": 276102,
+        "precoTexto": "A partir de R$ 276 mil",
+        "metragemBase": "34,65 m²",
+        "entrega": "01/11/2023"
+    },
+    {
+        "nome": "Condomínio Residencial Dez Celeste",
+        "endereco": "Av.  Dos Ourives, 840",
+        "enderecoResumido": "Av.  Dos Ourives, 840",
+        "faixaCep": "04",
+        "bairro": "Jd. São Savério",
+        "regiao": "Zona Sul",
+        "precoNumero": 231790,
+        "precoTexto": "A partir de R$ 231 mil",
+        "metragemBase": "34,99 m²",
+        "entrega": "26/04/2026"
+    },
+    {
+        "nome": "Connect São Mateus",
+        "endereco": "R. Andre de Almeida, 2665",
+        "enderecoResumido": "R. Andre de Almeida, 2665",
+        "faixaCep": "03",
+        "bairro": "Parque Colonial",
+        "regiao": "Zona Sul",
+        "precoNumero": 271611,
+        "precoTexto": "A partir de R$ 271 mil",
+        "metragemBase": "34,19 m²",
+        "entrega": "01/09/2025"
+    },
+    {
+        "nome": "Connect São Mateus 2",
+        "endereco": "R. Andre de Almeida, 2665",
+        "enderecoResumido": "R. Andre de Almeida, 2665",
+        "faixaCep": "03",
+        "bairro": "Parque Colonial",
+        "regiao": "Zona Sul",
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada",
+        "entrega": "01/05/2026"
+    },
+    {
+        "nome": "Dez Limão",
+        "endereco": "R. Rocha lima, 411",
+        "enderecoResumido": "R. Rocha lima, 411",
+        "faixaCep": "02",
+        "bairro": "Vila Diva",
+        "regiao": "Zona Norte",
+        "precoNumero": 305685,
+        "precoTexto": "A partir de R$ 305 mil",
+        "metragemBase": "33,99 m²",
+        "entrega": "01/06/2026"
+    },
+    {
+        "nome": "Green Lyne Pirituba",
+        "endereco": "Av. Paula Ferreira, 3700",
+        "enderecoResumido": "Av. Paula Ferreira, 3700",
+        "faixaCep": "02",
+        "bairro": "Vila Pirituba",
+        "regiao": "Zona Norte",
+        "precoNumero": 228962,
+        "precoTexto": "A partir de R$ 228 mil",
+        "metragemBase": "35,23 m²",
+        "entrega": "01/06/2025"
+    },
+    {
+        "nome": "Like Campo Limpo",
+        "endereco": "R.  Nossa Sra. Do Bom Conselho, S/N",
+        "enderecoResumido": "R.  Nossa Sra. Do Bom Conselho, S/N",
+        "faixaCep": "05",
+        "bairro": "Chacara N. Sra. Do Bom Conselho",
+        "regiao": "Zona Sul",
+        "precoNumero": 386343,
+        "precoTexto": "A partir de R$ 386 mil",
+        "metragemBase": "44,5 m²",
+        "entrega": "01/04/2028"
+    },
+    {
+        "nome": "Lyne Campo Limpo",
+        "endereco": "Av. Carlos Caldeira Filho, S/N",
+        "enderecoResumido": "Av. Carlos Caldeira Filho, S/N",
+        "faixaCep": "05",
+        "bairro": "Jd. Avenida",
+        "regiao": "Zona Sul",
+        "precoNumero": 607675,
+        "precoTexto": "A partir de R$ 607 mil",
+        "metragemBase": "56,31 m²",
+        "entrega": "01/10/2027"
+    },
+    {
+        "nome": "My Sacomã",
+        "endereco": "R. Frans Alt, S/N",
+        "enderecoResumido": "R. Frans Alt, S/N",
+        "faixaCep": "04",
+        "bairro": "Jd. Santa Emilia",
+        "regiao": "Zona Sul",
+        "precoNumero": 325716,
+        "precoTexto": "A partir de R$ 325 mil",
+        "metragemBase": "43,44 m²",
+        "entrega": "01/02/2028"
+    },
+    {
+        "nome": "Soul Miguel Yunes",
+        "endereco": "Av. Miguel Yunes, S/N",
+        "enderecoResumido": "Av. Miguel Yunes, S/N",
+        "faixaCep": "04",
+        "bairro": "Usina Piratininga",
+        "regiao": "Zona Sul",
+        "precoNumero": 180316,
+        "precoTexto": "A partir de R$ 180 mil",
+        "metragemBase": "23,23 m²",
+        "entrega": "01/05/2027"
+    },
+    {
+        "nome": "Urban Tatuapé",
+        "endereco": "R.  Cesario Galeno, 289",
+        "enderecoResumido": "R.  Cesario Galeno, 289",
+        "faixaCep": "03",
+        "bairro": "Tatuape",
+        "regiao": "Zona Leste",
+        "precoNumero": 378272,
+        "precoTexto": "A partir de R$ 378 mil",
+        "metragemBase": "35,48 m²",
+        "entrega": "01/02/2026"
+    },
+    {
+        "nome": "Urban Vila Maria II",
+        "endereco": "R. João Veloso Filho, 1346",
+        "enderecoResumido": "R. João Veloso Filho, 1346",
+        "faixaCep": "02",
+        "bairro": "Vila Guilherme",
+        "regiao": "Zona Norte",
+        "precoNumero": 460072,
+        "precoTexto": "A partir de R$ 460 mil",
+        "metragemBase": "44,86 m²",
+        "entrega": "30/04/2024"
+    },
+    {
+        "nome": "Yunes Park",
+        "endereco": "Av. Miguel Yunes, S/N",
+        "enderecoResumido": "Av. Miguel Yunes, S/N",
+        "faixaCep": "04",
+        "bairro": "Usina piratininga",
+        "regiao": "Zona Sul",
+        "precoNumero": 181249,
+        "precoTexto": "A partir de R$ 181 mil",
+        "metragemBase": "28,8 m²",
+        "entrega": "01/02/2027"
+    }
+];
 
   const detalhesPorEmpreendimento = {
     "Alto São Domingos - Mutinga": [
@@ -350,36 +542,21 @@ export default function App() {
 
   const totalEmpreendimentos = useMemo(() => empreendimentos.length, []);
 
-  const limparNumero = (valor) => String(valor || "").replace(/\D/g, "");
-
-  const normalizarTexto = (valor) =>
-    String(valor || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+  const limparNumero = (valor) => valor.replace(/\D/g, "");
 
   const formatarMoeda = (valor) =>
     new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
       maximumFractionDigits: 0,
-    }).format(valor || 0);
-
-  const criarLinkMaps = (item) => {
-    const endereco = item.endereco || item.enderecoResumido || "";
-    const texto = `${endereco} ${item.bairro} São Paulo SP`;
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      texto
-    )}`;
-  };
+    }).format(valor);
 
   const buscarEmpreendimentos = () => {
-    const termoOriginal = busca.trim();
-    const termo = normalizarTexto(termoOriginal);
-    const cepLimpo = limparNumero(termoOriginal);
+    const termo = busca.trim().toLowerCase();
+    const cepLimpo = limparNumero(busca);
     const max = precoMaximo ? Number(precoMaximo) : null;
 
-    if (!termoOriginal) {
+    if (!termo) {
       setResultados([]);
       setMensagem("Digite um CEP, bairro ou região para buscar.");
       return;
@@ -389,11 +566,10 @@ export default function App() {
       const bateCep =
         cepLimpo.length >= 2 && item.faixaCep === cepLimpo.substring(0, 2);
 
-      const textoCompleto = normalizarTexto(
-        `${item.nome} ${item.bairro} ${item.regiao} ${item.endereco}`
-      );
-
-      const bateTexto = textoCompleto.includes(termo);
+      const bateTexto =
+        item.bairro.toLowerCase().includes(termo) ||
+        item.nome.toLowerCase().includes(termo) ||
+        item.regiao.toLowerCase().includes(termo);
 
       return bateCep || bateTexto;
     });
@@ -474,29 +650,14 @@ export default function App() {
 
             <div style={{ marginTop: 18 }}>
               <div style={styles.brandTop}>Detalhamento do empreendimento</div>
-
-              <h1 style={styles.titleInterna}>
-                {empreendimentoSelecionado.nome}
-              </h1>
-
+              <h1 style={styles.titleInterna}>{empreendimentoSelecionado.nome}</h1>
               <p style={styles.enderecoLinha}>
-                {empreendimentoSelecionado.enderecoResumido ||
-                  empreendimentoSelecionado.endereco}
+                {empreendimentoSelecionado.endereco}
               </p>
-
               <p style={styles.subtitle}>
                 Bairro: {empreendimentoSelecionado.bairro} • Região:{" "}
                 {empreendimentoSelecionado.regiao}
               </p>
-
-              <a
-                href={criarLinkMaps(empreendimentoSelecionado)}
-                target="_blank"
-                rel="noreferrer"
-                style={styles.mapsButton}
-              >
-                📍 Abrir no Google Maps
-              </a>
             </div>
 
             <div style={styles.statsGrid}>
@@ -506,14 +667,12 @@ export default function App() {
                   {empreendimentoSelecionado.precoTexto}
                 </span>
               </div>
-
               <div style={styles.statCard}>
                 <span style={styles.statLabel}>Metragem base</span>
                 <span style={styles.statValueSmall}>
                   {empreendimentoSelecionado.metragemBase}
                 </span>
               </div>
-
               <div style={styles.statCard}>
                 <span style={styles.statLabel}>Entrega</span>
                 <span style={styles.statValueSmall}>
@@ -650,8 +809,8 @@ export default function App() {
             <div style={styles.emptyIcon}>🏢</div>
             <h3 style={styles.emptyTitle}>Pronto para consultar</h3>
             <p style={styles.emptyText}>
-              Pesquise por Mooca, Pirituba, Campo Limpo, Tatuapé, Sacomã ou por
-              CEP.
+              Pesquise por Mooca, Barra Funda, Campo Limpo, Santo André,
+              Tatuapé, Sacomã ou por CEP.
             </p>
           </div>
         ) : (
@@ -672,7 +831,9 @@ export default function App() {
 
                   <div style={styles.infoRow}>
                     <span style={styles.infoLabel}>Faixa CEP</span>
-                    <span style={styles.infoValue}>{item.faixaCep}xxx-xxx</span>
+                    <span style={styles.infoValue}>
+                      {item.faixaCep}xxx-xxx
+                    </span>
                   </div>
 
                   <div style={styles.infoRow}>
@@ -804,17 +965,6 @@ const styles = {
     fontWeight: "bold",
     lineHeight: 1.4,
   },
-  mapsButton: {
-    display: "inline-block",
-    marginTop: "12px",
-    padding: "11px 14px",
-    borderRadius: "14px",
-    background: "#eef4ff",
-    color: "#0f3d91",
-    fontSize: "14px",
-    fontWeight: "bold",
-    textDecoration: "none",
-  },
   subtitle: {
     margin: "8px 0 0",
     color: "#64748b",
@@ -825,7 +975,6 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "1fr",
     gap: "10px",
-    marginTop: "16px",
   },
   statCard: {
     background: "#f8fbff",
