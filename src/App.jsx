@@ -12,7 +12,1370 @@ export default function App() {
   const [empreendimentoSelecionado, setEmpreendimentoSelecionado] =
     useState(null);
 
-  const senhaCorreta = "1234"; // altere aqui se quiser
+  const senhaCorreta = "1234";
+
+  const empreendimentos = [
+    {
+        "nome": "Dez Belenzinho",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Belém",
+        "endereco": "",
+        "numero": "",
+        "cep": "",
+        "enderecoCompleto": "Belém",
+        "faixaCep": "03",
+        "status": "0",
+        "unidadesDisponiveis": "0",
+        "entrega": "",
+        "mcmv": "",
+        "enquadramento": "",
+        "perfil": "",
+        "tipologias": [],
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada"
+    },
+    {
+        "nome": "Mérito Belenzinho",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Belém",
+        "endereco": "R. Joaquim Carlos",
+        "numero": "S/N",
+        "cep": "03019-000",
+        "enderecoCompleto": "R. Joaquim Carlos, S/N - Belém - CEP 03019-000",
+        "faixaCep": "03",
+        "status": "5",
+        "unidadesDisponiveis": "5",
+        "entrega": "01/09/2027",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 34.37,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 255093,
+                "precoTexto": "A partir de R$ 255.093",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 255093,
+        "precoTexto": "A partir de R$ 255.093",
+        "metragemBase": "34,37 m²"
+    },
+    {
+        "nome": "Modern Mooca",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Mooca/Cambuci",
+        "endereco": "R. Dona Ana Neri",
+        "numero": "793",
+        "cep": "01522-000",
+        "enderecoCompleto": "R. Dona Ana Neri, 793 - Mooca/Cambuci - CEP 01522-000",
+        "faixaCep": "01",
+        "status": "6",
+        "unidadesDisponiveis": "6",
+        "entrega": "01/06/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 41.61,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 375266,
+                "precoTexto": "A partir de R$ 375.266",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 375266,
+        "precoTexto": "A partir de R$ 375.266",
+        "metragemBase": "41,61 m²"
+    },
+    {
+        "nome": "Novo Mundo Carrão II",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Vila Carrão",
+        "endereco": "R. Lutecia",
+        "numero": "1508",
+        "cep": "03423-000",
+        "enderecoCompleto": "R. Lutecia, 1508 - Vila Carrão - CEP 03423-000",
+        "faixaCep": "03",
+        "status": "641",
+        "unidadesDisponiveis": "641",
+        "entrega": "01/07/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 27.89,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 245000,
+                "precoTexto": "A partir de R$ 245.000",
+                "referencia": "",
+                "observacoes": ""
+            },
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 38.95,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 260000,
+                "precoTexto": "A partir de R$ 260.000",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 245000,
+        "precoTexto": "A partir de R$ 245.000",
+        "metragemBase": "27,89 m²"
+    },
+    {
+        "nome": "Cidade Mooca - Navona",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Mooca",
+        "endereco": "R. Serra de Paracaina",
+        "numero": "S/N",
+        "cep": "03107-020",
+        "enderecoCompleto": "R. Serra de Paracaina, S/N - Mooca - CEP 03107-020",
+        "faixaCep": "03",
+        "status": "35",
+        "unidadesDisponiveis": "35",
+        "entrega": "01/06/2027",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 34.44,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 268055,
+                "precoTexto": "A partir de R$ 268.055",
+                "referencia": "",
+                "observacoes": ""
+            },
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 44.73,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 486480,
+                "precoTexto": "A partir de R$ 486.480",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 268055,
+        "precoTexto": "A partir de R$ 268.055",
+        "metragemBase": "34,44 m²"
+    },
+    {
+        "nome": "Supreme Anália Franco",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Analia Franco",
+        "endereco": "R. Guapeva",
+        "numero": "S/N",
+        "cep": "03333-010",
+        "enderecoCompleto": "R. Guapeva, S/N - Analia Franco - CEP 03333-010",
+        "faixaCep": "03",
+        "status": "3",
+        "unidadesDisponiveis": "3",
+        "entrega": "01/02/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 32.83,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 270000,
+                "precoTexto": "A partir de R$ 270.000",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 270000,
+        "precoTexto": "A partir de R$ 270.000",
+        "metragemBase": "32,83 m²"
+    },
+    {
+        "nome": "Marco freguesia",
+        "construtora": "Cury",
+        "regiao": "Norte",
+        "bairro": "Fraguesia do Ó",
+        "endereco": "R. Eneias Luis Carlos Barbanti",
+        "numero": "392",
+        "cep": "02911-000",
+        "enderecoCompleto": "R. Eneias Luis Carlos Barbanti, 392 - Fraguesia do Ó - CEP 02911-000",
+        "faixaCep": "02",
+        "status": "502",
+        "unidadesDisponiveis": "502",
+        "entrega": "01/03/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 36.8,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 287857,
+                "precoTexto": "A partir de R$ 287.857",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 287857,
+        "precoTexto": "A partir de R$ 287.857",
+        "metragemBase": "36,80 m²"
+    },
+    {
+        "nome": "Park View 360",
+        "construtora": "Cury",
+        "regiao": "Norte",
+        "bairro": "Pirituba/Cyti Aerica",
+        "endereco": "Av. Do Anastacio",
+        "numero": "740",
+        "cep": "05119-000",
+        "enderecoCompleto": "Av. Do Anastacio, 740 - Pirituba/Cyti Aerica - CEP 05119-000",
+        "faixaCep": "05",
+        "status": "154",
+        "unidadesDisponiveis": "154",
+        "entrega": "01/01/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 36.8,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 297973,
+                "precoTexto": "A partir de R$ 297.973",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 297973,
+        "precoTexto": "A partir de R$ 297.973",
+        "metragemBase": "36,80 m²"
+    },
+    {
+        "nome": "Alto São Domingos - Mutinga",
+        "construtora": "Cury",
+        "regiao": "Norte",
+        "bairro": "Pirituba",
+        "endereco": "Av. Mutinga",
+        "numero": "S/N",
+        "cep": "05154-000",
+        "enderecoCompleto": "Av. Mutinga, S/N - Pirituba - CEP 05154-000",
+        "faixaCep": "05",
+        "status": "24",
+        "unidadesDisponiveis": "24",
+        "entrega": "01/11/2027",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 34.45,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 283697,
+                "precoTexto": "A partir de R$ 283.697",
+                "referencia": "",
+                "observacoes": ""
+            },
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 34.59,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 275815,
+                "precoTexto": "A partir de R$ 275.815",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 275815,
+        "precoTexto": "A partir de R$ 275.815",
+        "metragemBase": "34,45 m²"
+    },
+    {
+        "nome": "Dez Butantã",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Vl. Lageado",
+        "endereco": "Av. Corifeu de Azevedo Marques",
+        "numero": "S/N",
+        "cep": "05339-001",
+        "enderecoCompleto": "Av. Corifeu de Azevedo Marques, S/N - Vl. Lageado - CEP 05339-001",
+        "faixaCep": "05",
+        "status": "24",
+        "unidadesDisponiveis": "24",
+        "entrega": "01/01/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 34.24,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 265420,
+                "precoTexto": "A partir de R$ 265.420",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 265420,
+        "precoTexto": "A partir de R$ 265.420",
+        "metragemBase": "34,24 m²"
+    },
+    {
+        "nome": "Singular Butantã",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Rio Pequeno",
+        "endereco": "Av. Rio Pequeno",
+        "numero": "S/N",
+        "cep": "05379-00",
+        "enderecoCompleto": "Av. Rio Pequeno, S/N - Rio Pequeno - CEP 05379-00",
+        "faixaCep": "05",
+        "status": "67",
+        "unidadesDisponiveis": "67",
+        "entrega": "01/07/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 34.24,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 282,
+                "precoTexto": "A partir de R$ 282",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 282,
+        "precoTexto": "A partir de R$ 282",
+        "metragemBase": "34,24 m²"
+    },
+    {
+        "nome": "Supreme Vila Romana",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Agua Brnaca",
+        "endereco": "R. Clelia",
+        "numero": "1030",
+        "cep": "05442-00",
+        "enderecoCompleto": "R. Clelia, 1030 - Agua Brnaca - CEP 05442-00",
+        "faixaCep": "05",
+        "status": "104",
+        "unidadesDisponiveis": "104",
+        "entrega": "01/01/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 36.8,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 357834,
+                "precoTexto": "A partir de R$ 357.834",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 357834,
+        "precoTexto": "A partir de R$ 357.834",
+        "metragemBase": "36,80 m²"
+    },
+    {
+        "nome": "Atmosfera Jaguare",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Jaguaré",
+        "endereco": "R. Santo Eurilo",
+        "numero": "296",
+        "cep": "05345-040",
+        "enderecoCompleto": "R. Santo Eurilo, 296 - Jaguaré - CEP 05345-040",
+        "faixaCep": "05",
+        "status": "177",
+        "unidadesDisponiveis": "177",
+        "entrega": "01/11/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 24.13,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 220000,
+                "precoTexto": "A partir de R$ 220.000",
+                "referencia": "",
+                "observacoes": ""
+            },
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 32.19,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 255000,
+                "precoTexto": "A partir de R$ 255.000",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 220000,
+        "precoTexto": "A partir de R$ 220.000",
+        "metragemBase": "24,13 m²"
+    },
+    {
+        "nome": "Mérito Lapa",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Lapa/Vila anastacio",
+        "endereco": "R. Bartolomeu Paes",
+        "numero": "255",
+        "cep": "05092-000",
+        "enderecoCompleto": "R. Bartolomeu Paes, 255 - Lapa/Vila anastacio - CEP 05092-000",
+        "faixaCep": "05",
+        "status": "536",
+        "unidadesDisponiveis": "536",
+        "entrega": "01/01/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 36.8,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 322050,
+                "precoTexto": "A partir de R$ 322.050",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 322050,
+        "precoTexto": "A partir de R$ 322.050",
+        "metragemBase": "36,80 m²"
+    },
+    {
+        "nome": "Barra funda900",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Barra Funda",
+        "endereco": "R. Barra Funda",
+        "numero": "900",
+        "cep": "01150-000",
+        "enderecoCompleto": "R. Barra Funda, 900 - Barra Funda - CEP 01150-000",
+        "faixaCep": "01",
+        "status": "647",
+        "unidadesDisponiveis": "647",
+        "entrega": "01/03/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 32.5,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 292907,
+                "precoTexto": "A partir de R$ 292.907",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 292907,
+        "precoTexto": "A partir de R$ 292.907",
+        "metragemBase": "32,50 m²"
+    },
+    {
+        "nome": "Barra funda930",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Barra Funda",
+        "endereco": "R. Barra Funda",
+        "numero": "930",
+        "cep": "01152-000",
+        "enderecoCompleto": "R. Barra Funda, 930 - Barra Funda - CEP 01152-000",
+        "faixaCep": "01",
+        "status": "60",
+        "unidadesDisponiveis": "60",
+        "entrega": "01/11/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 37.86,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 360000,
+                "precoTexto": "A partir de R$ 360.000",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 360000,
+        "precoTexto": "A partir de R$ 360.000",
+        "metragemBase": "37,86 m²"
+    },
+    {
+        "nome": "Cidade Vila Lobos Sonata",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Jaguaré",
+        "endereco": "",
+        "numero": "",
+        "cep": "",
+        "enderecoCompleto": "Jaguaré",
+        "faixaCep": "05",
+        "status": "0",
+        "unidadesDisponiveis": "0",
+        "entrega": "",
+        "mcmv": "SIM",
+        "enquadramento": "",
+        "perfil": "GERAL",
+        "tipologias": [],
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada"
+    },
+    {
+        "nome": "Cidade Vila Lobos - Maestro",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Jaguaré",
+        "endereco": "Av. Torres de Oliveira",
+        "numero": "S/N",
+        "cep": "05347-020",
+        "enderecoCompleto": "Av. Torres de Oliveira, S/N - Jaguaré - CEP 05347-020",
+        "faixaCep": "05",
+        "status": "16",
+        "unidadesDisponiveis": "16",
+        "entrega": "01/05/2028",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 34.81,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 267910,
+                "precoTexto": "A partir de R$ 267.910",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 267910,
+        "precoTexto": "A partir de R$ 267.910",
+        "metragemBase": "34,81 m²"
+    },
+    {
+        "nome": "Cidade Vila Lobos - Soprano",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Jaguaré",
+        "endereco": "",
+        "numero": "",
+        "cep": "",
+        "enderecoCompleto": "Jaguaré",
+        "faixaCep": "05",
+        "status": "0",
+        "unidadesDisponiveis": "0",
+        "entrega": "01/11/2027",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [],
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada"
+    },
+    {
+        "nome": "Cidade Vila Lobos - Condominio Tenor",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Jaguaré",
+        "endereco": "Av. Onofrio Milani",
+        "numero": "S/N",
+        "cep": "05348-030",
+        "enderecoCompleto": "Av. Onofrio Milani, S/N - Jaguaré - CEP 05348-030",
+        "faixaCep": "05",
+        "status": "553",
+        "unidadesDisponiveis": "553",
+        "entrega": "01/04/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 32.42,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 251835,
+                "precoTexto": "A partir de R$ 251.835",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 251835,
+        "precoTexto": "A partir de R$ 251.835",
+        "metragemBase": "32,42 m²"
+    },
+    {
+        "nome": "Lyne Agua Branca",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Agua Branca",
+        "endereco": "R. Comendador Souza",
+        "numero": "194",
+        "cep": "05037-090",
+        "enderecoCompleto": "R. Comendador Souza, 194 - Agua Branca - CEP 05037-090",
+        "faixaCep": "05",
+        "status": "721",
+        "unidadesDisponiveis": "721",
+        "entrega": "01/12/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 36.8,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 296000,
+                "precoTexto": "A partir de R$ 296.000",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 296000,
+        "precoTexto": "A partir de R$ 296.000",
+        "metragemBase": "36,80 m²"
+    },
+    {
+        "nome": "Nova Leopoldina",
+        "construtora": "Cury",
+        "regiao": "Oeste",
+        "bairro": "Vila Leopoldina",
+        "endereco": "",
+        "numero": "",
+        "cep": "",
+        "enderecoCompleto": "Vila Leopoldina",
+        "faixaCep": "05",
+        "status": "0",
+        "unidadesDisponiveis": "0",
+        "entrega": "",
+        "mcmv": "",
+        "enquadramento": "",
+        "perfil": "",
+        "tipologias": [],
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada"
+    },
+    {
+        "nome": "Cidade Parque Guarapiranga",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Socorro",
+        "endereco": "Av. Do Rio Bonito",
+        "numero": "57",
+        "cep": "04776-000",
+        "enderecoCompleto": "Av. Do Rio Bonito, 57 - Socorro - CEP 04776-000",
+        "faixaCep": "04",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "01/09/2029",
+        "mcmv": "SIM",
+        "enquadramento": "",
+        "perfil": "GERAL",
+        "tipologias": [],
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada"
+    },
+    {
+        "nome": "Praça Santo Antonio",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Vl. Cruzeiro",
+        "endereco": "R. Braganca Paulista",
+        "numero": "845",
+        "cep": "04727-000",
+        "enderecoCompleto": "R. Braganca Paulista, 845 - Vl. Cruzeiro - CEP 04727-000",
+        "faixaCep": "04",
+        "status": "241",
+        "unidadesDisponiveis": "241",
+        "entrega": "01/05/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 36.8,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 325000,
+                "precoTexto": "A partir de R$ 325.000",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 325000,
+        "precoTexto": "A partir de R$ 325.000",
+        "metragemBase": "36,80 m²"
+    },
+    {
+        "nome": "Parque das Nações Laguna",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Jd. Caravelas",
+        "endereco": "R. Luiz Seraphico Junior",
+        "numero": "326",
+        "cep": "04729-080",
+        "enderecoCompleto": "R. Luiz Seraphico Junior, 326 - Jd. Caravelas - CEP 04729-080",
+        "faixaCep": "04",
+        "status": "295",
+        "unidadesDisponiveis": "295",
+        "entrega": "01/02/2029",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 26.56,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 236012,
+                "precoTexto": "A partir de R$ 236.012",
+                "referencia": "",
+                "observacoes": ""
+            },
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 37.15,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 335708,
+                "precoTexto": "A partir de R$ 335.708",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 236012,
+        "precoTexto": "A partir de R$ 236.012",
+        "metragemBase": "26,56 m²"
+    },
+    {
+        "nome": "Merito - Vila Mascote",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Vl. Santa Catarina",
+        "endereco": "R. Dr. Djalma Pinheiro Franco",
+        "numero": "S/N",
+        "cep": "04368-006",
+        "enderecoCompleto": "R. Dr. Djalma Pinheiro Franco, S/N - Vl. Santa Catarina - CEP 04368-006",
+        "faixaCep": "04",
+        "status": "7",
+        "unidadesDisponiveis": "7",
+        "entrega": "01/11/2027",
+        "mcmv": "SIM",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 35.0,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 294914,
+                "precoTexto": "A partir de R$ 294.914",
+                "referencia": "",
+                "observacoes": ""
+            },
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 46.7,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPCAO",
+                "precoNumero": 5171181,
+                "precoTexto": "A partir de R$ 5.171.181",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 294914,
+        "precoTexto": "A partir de R$ 294.914",
+        "metragemBase": "35,00 m²"
+    },
+    {
+        "nome": "Cidade Mooca - Duomo",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Mooca",
+        "endereco": "R. Serra de Paracaína",
+        "numero": "S/N",
+        "cep": "03107-020",
+        "enderecoCompleto": "R. Serra de Paracaína, S/N - Mooca - CEP 03107-020",
+        "faixaCep": "03",
+        "status": "2",
+        "unidadesDisponiveis": "2",
+        "entrega": "01/03/2027",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 34.6,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 264343,
+                "precoTexto": "A partir de R$ 264.343",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 264343,
+        "precoTexto": "A partir de R$ 264.343",
+        "metragemBase": "34,60 m²"
+    },
+    {
+        "nome": "Cidade Mooca - Vila Capri",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Mooca",
+        "endereco": "R. da Mooca",
+        "numero": "1300",
+        "cep": "03104-010",
+        "enderecoCompleto": "R. da Mooca, 1300 - Mooca - CEP 03104-010",
+        "faixaCep": "03",
+        "status": "2",
+        "unidadesDisponiveis": "2",
+        "entrega": "01/12/2024",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 37.05,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 362971,
+                "precoTexto": "A partir de R$ 362.971",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 362971,
+        "precoTexto": "A partir de R$ 362.971",
+        "metragemBase": "37,05 m²"
+    },
+    {
+        "nome": "Condomínio Residencial Dez Canindé",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Canindé",
+        "endereco": "R. Azurita",
+        "numero": "48",
+        "cep": "03034-050",
+        "enderecoCompleto": "R. Azurita, 48 - Canindé - CEP 03034-050",
+        "faixaCep": "03",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "01/11/2023",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 34.65,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 276102,
+                "precoTexto": "A partir de R$ 276.102",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 276102,
+        "precoTexto": "A partir de R$ 276.102",
+        "metragemBase": "34,65 m²"
+    },
+    {
+        "nome": "Condomínio Residencial Dez Celeste",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Jd. São Savério",
+        "endereco": "Av.  Dos Ourives",
+        "numero": "840",
+        "cep": "04194-260",
+        "enderecoCompleto": "Av.  Dos Ourives, 840 - Jd. São Savério - CEP 04194-260",
+        "faixaCep": "04",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "26/04/2026",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 34.99,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 231790,
+                "precoTexto": "A partir de R$ 231.790",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 231790,
+        "precoTexto": "A partir de R$ 231.790",
+        "metragemBase": "34,99 m²"
+    },
+    {
+        "nome": "Connect São Mateus",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Parque Colonial",
+        "endereco": "R. Andre de Almeida",
+        "numero": "2665",
+        "cep": "03968-005",
+        "enderecoCompleto": "R. Andre de Almeida, 2665 - Parque Colonial - CEP 03968-005",
+        "faixaCep": "03",
+        "status": "2",
+        "unidadesDisponiveis": "2",
+        "entrega": "01/09/2025",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 34.19,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 271611,
+                "precoTexto": "A partir de R$ 271.611",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 271611,
+        "precoTexto": "A partir de R$ 271.611",
+        "metragemBase": "34,19 m²"
+    },
+    {
+        "nome": "Connect São Mateus 2",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Parque Colonial",
+        "endereco": "R. Andre de Almeida",
+        "numero": "2665",
+        "cep": "03968-006",
+        "enderecoCompleto": "R. Andre de Almeida, 2665 - Parque Colonial - CEP 03968-006",
+        "faixaCep": "03",
+        "status": "2",
+        "unidadesDisponiveis": "2",
+        "entrega": "01/05/2026",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [],
+        "precoNumero": 0,
+        "precoTexto": "Preço não informado",
+        "metragemBase": "Metragem não informada"
+    },
+    {
+        "nome": "Dez Limão",
+        "construtora": "Cury",
+        "regiao": "Norte",
+        "bairro": "Vila Diva",
+        "endereco": "R. Rocha lima",
+        "numero": "411",
+        "cep": "02554-010",
+        "enderecoCompleto": "R. Rocha lima, 411 - Vila Diva - CEP 02554-010",
+        "faixaCep": "02",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "01/06/2026",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 33.99,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 305685,
+                "precoTexto": "A partir de R$ 305.685",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 305685,
+        "precoTexto": "A partir de R$ 305.685",
+        "metragemBase": "33,99 m²"
+    },
+    {
+        "nome": "Green Lyne Pirituba",
+        "construtora": "Cury",
+        "regiao": "Norte",
+        "bairro": "Vila Pirituba",
+        "endereco": "Av. Paula Ferreira",
+        "numero": "3700",
+        "cep": "02915-100",
+        "enderecoCompleto": "Av. Paula Ferreira, 3700 - Vila Pirituba - CEP 02915-100",
+        "faixaCep": "02",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "01/06/2025",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 35.23,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 228962,
+                "precoTexto": "A partir de R$ 228.962",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 228962,
+        "precoTexto": "A partir de R$ 228.962",
+        "metragemBase": "35,23 m²"
+    },
+    {
+        "nome": "Like Campo Limpo",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Chacara N. Sra. Do Bom Conselho",
+        "endereco": "R.  Nossa Sra. Do Bom Conselho",
+        "numero": "S/N",
+        "cep": "05763-470",
+        "enderecoCompleto": "R.  Nossa Sra. Do Bom Conselho, S/N - Chacara N. Sra. Do Bom Conselho - CEP 05763-470",
+        "faixaCep": "05",
+        "status": "28",
+        "unidadesDisponiveis": "28",
+        "entrega": "01/04/2028",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 44.5,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "OPÇÃO",
+                "precoNumero": 386343,
+                "precoTexto": "A partir de R$ 386.343",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 386343,
+        "precoTexto": "A partir de R$ 386.343",
+        "metragemBase": "44,50 m²"
+    },
+    {
+        "nome": "Lyne Campo Limpo",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Jd. Avenida",
+        "endereco": "Av. Carlos Caldeira Filho",
+        "numero": "S/N",
+        "cep": "05798-350",
+        "enderecoCompleto": "Av. Carlos Caldeira Filho, S/N - Jd. Avenida - CEP 05798-350",
+        "faixaCep": "05",
+        "status": "8",
+        "unidadesDisponiveis": "8",
+        "entrega": "01/10/2027",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 56.31,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 607675,
+                "precoTexto": "A partir de R$ 607.675",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 607675,
+        "precoTexto": "A partir de R$ 607.675",
+        "metragemBase": "56,31 m²"
+    },
+    {
+        "nome": "My Sacomã",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Jd. Santa Emilia",
+        "endereco": "R. Frans Alt",
+        "numero": "S/N",
+        "cep": "04183-010",
+        "enderecoCompleto": "R. Frans Alt, S/N - Jd. Santa Emilia - CEP 04183-010",
+        "faixaCep": "04",
+        "status": "2",
+        "unidadesDisponiveis": "2",
+        "entrega": "01/02/2028",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 43.44,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 325716,
+                "precoTexto": "A partir de R$ 325.716",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 325716,
+        "precoTexto": "A partir de R$ 325.716",
+        "metragemBase": "43,44 m²"
+    },
+    {
+        "nome": "Soul Miguel Yunes",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Usina Piratininga",
+        "endereco": "Av. Miguel Yunes",
+        "numero": "S/N",
+        "cep": "04444-000",
+        "enderecoCompleto": "Av. Miguel Yunes, S/N - Usina Piratininga - CEP 04444-000",
+        "faixaCep": "04",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "01/05/2027",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 23.23,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 180316,
+                "precoTexto": "A partir de R$ 180.316",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 180316,
+        "precoTexto": "A partir de R$ 180.316",
+        "metragemBase": "23,23 m²"
+    },
+    {
+        "nome": "Urban Tatuapé",
+        "construtora": "Cury",
+        "regiao": "Leste",
+        "bairro": "Tatuape",
+        "endereco": "R.  Cesario Galeno",
+        "numero": "289",
+        "cep": "03071-000",
+        "enderecoCompleto": "R.  Cesario Galeno, 289 - Tatuape - CEP 03071-000",
+        "faixaCep": "03",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "01/02/2026",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "0",
+                "areaMin": 35.48,
+                "areaMax": "",
+                "varanda": "0",
+                "vaga": "0",
+                "precoNumero": 378272,
+                "precoTexto": "A partir de R$ 378.272",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 378272,
+        "precoTexto": "A partir de R$ 378.272",
+        "metragemBase": "35,48 m²"
+    },
+    {
+        "nome": "Urban Vila Maria II",
+        "construtora": "Cury",
+        "regiao": "Norte",
+        "bairro": "Vila Guilherme",
+        "endereco": "R. João Veloso Filho",
+        "numero": "1346",
+        "cep": "02056-080",
+        "enderecoCompleto": "R. João Veloso Filho, 1346 - Vila Guilherme - CEP 02056-080",
+        "faixaCep": "02",
+        "status": "1",
+        "unidadesDisponiveis": "1",
+        "entrega": "30/04/2024",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 44.86,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "1",
+                "precoNumero": 460072,
+                "precoTexto": "A partir de R$ 460.072",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 460072,
+        "precoTexto": "A partir de R$ 460.072",
+        "metragemBase": "44,86 m²"
+    },
+    {
+        "nome": "Yunes Park",
+        "construtora": "Cury",
+        "regiao": "Sul",
+        "bairro": "Usina piratininga",
+        "endereco": "Av. Miguel Yunes",
+        "numero": "S/N",
+        "cep": "04444-000",
+        "enderecoCompleto": "Av. Miguel Yunes, S/N - Usina piratininga - CEP 04444-000",
+        "faixaCep": "04",
+        "status": "24",
+        "unidadesDisponiveis": "24",
+        "entrega": "01/02/2027",
+        "mcmv": "",
+        "enquadramento": "HIS1-HIS2-R2V",
+        "perfil": "GERAL",
+        "tipologias": [
+            {
+                "tipologia": "1 dormitorio",
+                "areaMin": 28.8,
+                "areaMax": "",
+                "varanda": "Não informado",
+                "vaga": "0",
+                "precoNumero": 181249,
+                "precoTexto": "A partir de R$ 181.249",
+                "referencia": "",
+                "observacoes": ""
+            },
+            {
+                "tipologia": "2 dormitorio",
+                "areaMin": 48.31,
+                "areaMax": "",
+                "varanda": "OPCAO",
+                "vaga": "0",
+                "precoNumero": 552377,
+                "precoTexto": "A partir de R$ 552.377",
+                "referencia": "",
+                "observacoes": ""
+            }
+        ],
+        "precoNumero": 181249,
+        "precoTexto": "A partir de R$ 181.249",
+        "metragemBase": "28,80 m²"
+    }
+];
+
+  const totalEmpreendimentos = useMemo(() => empreendimentos.length, []);
 
   const verificarSenha = () => {
     if (senha === senhaCorreta) {
@@ -22,563 +1385,161 @@ export default function App() {
     }
   };
 
-  const empreendimentos = [
-    {
-        "nome": "Dez Belenzinho",
-        "endereco": "Endereço não informado",
-        "enderecoResumido": "Endereço não informado",
-        "faixaCep": "03",
-        "bairro": "Belém",
-        "regiao": "Zona Leste",
-        "precoNumero": 0,
-        "precoTexto": "Preço não informado",
-        "metragemBase": "Metragem não informada",
-        "entrega": "Não informada"
-    },
-    {
-        "nome": "Mérito Belenzinho",
-        "endereco": "R. Joaquim Carlos, S/N",
-        "enderecoResumido": "R. Joaquim Carlos, S/N",
-        "faixaCep": "03",
-        "bairro": "Belém",
-        "regiao": "Zona Leste",
-        "precoNumero": 255093,
-        "precoTexto": "A partir de R$ 255 mil",
-        "metragemBase": "34,37 m²",
-        "entrega": "01/09/2027"
-    },
-    {
-        "nome": "Modern Mooca",
-        "endereco": "R. Dona Ana Neri, 793",
-        "enderecoResumido": "R. Dona Ana Neri, 793",
-        "faixaCep": "01",
-        "bairro": "Mooca/Cambuci",
-        "regiao": "Zona Leste",
-        "precoNumero": 375266,
-        "precoTexto": "A partir de R$ 375 mil",
-        "metragemBase": "41,61 m²",
-        "entrega": "01/06/2028"
-    },
-    {
-        "nome": "Novo Mundo Carrão II",
-        "endereco": "R. Lutecia, 1508",
-        "enderecoResumido": "R. Lutecia, 1508",
-        "faixaCep": "03",
-        "bairro": "Vila Carrão",
-        "regiao": "Zona Leste",
-        "precoNumero": 245000,
-        "precoTexto": "A partir de R$ 245 mil",
-        "metragemBase": "27,89 m²",
-        "entrega": "01/07/2029"
-    },
-    {
-        "nome": "Cidade Mooca  - Navona",
-        "endereco": "R. Serra de Paracaina, S/N",
-        "enderecoResumido": "R. Serra de Paracaina, S/N",
-        "faixaCep": "03",
-        "bairro": "Mooca",
-        "regiao": "Zona Leste",
-        "precoNumero": 268055,
-        "precoTexto": "A partir de R$ 268 mil",
-        "metragemBase": "34,44 m²",
-        "entrega": "01/06/2027"
-    },
-    {
-        "nome": "Supreme Anália Franco",
-        "endereco": "R. Guapeva, S/N",
-        "enderecoResumido": "R. Guapeva, S/N",
-        "faixaCep": "03",
-        "bairro": "Analia Franco",
-        "regiao": "Zona Leste",
-        "precoNumero": 270000,
-        "precoTexto": "A partir de R$ 270 mil",
-        "metragemBase": "32,83 m²",
-        "entrega": "01/02/2028"
-    },
-    {
-        "nome": "Marco freguesia",
-        "endereco": "R. Eneias Luis Carlos Barbanti, 392",
-        "enderecoResumido": "R. Eneias Luis Carlos Barbanti, 392",
-        "faixaCep": "02",
-        "bairro": "Fraguesia do Ó",
-        "regiao": "Zona Norte",
-        "precoNumero": 287857,
-        "precoTexto": "A partir de R$ 287 mil",
-        "metragemBase": "36,8 m²",
-        "entrega": "01/03/2029"
-    },
-    {
-        "nome": "Park View 360",
-        "endereco": "Av. Do Anastacio, 740",
-        "enderecoResumido": "Av. Do Anastacio, 740",
-        "faixaCep": "05",
-        "bairro": "Pirituba/Cyti Aerica",
-        "regiao": "Zona Norte",
-        "precoNumero": 297973,
-        "precoTexto": "A partir de R$ 297 mil",
-        "metragemBase": "36,8 m²",
-        "entrega": "01/01/2028"
-    },
-    {
-        "nome": "Alto São Domingos  - Mutinga",
-        "endereco": "Av. Mutinga, S/N",
-        "enderecoResumido": "Av. Mutinga, S/N",
-        "faixaCep": "05",
-        "bairro": "Pirituba",
-        "regiao": "Zona Norte",
-        "precoNumero": 275815,
-        "precoTexto": "A partir de R$ 275 mil",
-        "metragemBase": "34,45 m²",
-        "entrega": "01/11/2027"
-    },
-    {
-        "nome": "Dez Butantã",
-        "endereco": "Av. Corifeu de Azevedo Marques, S/N",
-        "enderecoResumido": "Av. Corifeu de Azevedo Marques, S/N",
-        "faixaCep": "05",
-        "bairro": "Vl. Lageado",
-        "regiao": "Zona Oeste",
-        "precoNumero": 265420,
-        "precoTexto": "A partir de R$ 265 mil",
-        "metragemBase": "34,24 m²",
-        "entrega": "01/01/2028"
-    },
-    {
-        "nome": "Singular Butantã",
-        "endereco": "Av. Rio Pequeno, S/N",
-        "enderecoResumido": "Av. Rio Pequeno, S/N",
-        "faixaCep": "05",
-        "bairro": "Rio Pequeno",
-        "regiao": "Zona Oeste",
-        "precoNumero": 281,
-        "precoTexto": "A partir de R$ 0 mil",
-        "metragemBase": "34,24 m²",
-        "entrega": "01/07/2028"
-    },
-    {
-        "nome": "Supreme Vila Romana",
-        "endereco": "R. Clelia, 1030",
-        "enderecoResumido": "R. Clelia, 1030",
-        "faixaCep": "05",
-        "bairro": "Agua Brnaca",
-        "regiao": "Zona Oeste",
-        "precoNumero": 357834,
-        "precoTexto": "A partir de R$ 357 mil",
-        "metragemBase": "36,8 m²",
-        "entrega": "01/01/2029"
-    },
-    {
-        "nome": "Atmosfera  Jaguare",
-        "endereco": "R. Santo Eurilo, 296",
-        "enderecoResumido": "R. Santo Eurilo, 296",
-        "faixaCep": "05",
-        "bairro": "Jaguaré",
-        "regiao": "Zona Oeste",
-        "precoNumero": 220000,
-        "precoTexto": "A partir de R$ 220 mil",
-        "metragemBase": "24,13 m²",
-        "entrega": "01/11/2028"
-    },
-    {
-        "nome": "Mérito Lapa",
-        "endereco": "R. Bartolomeu Paes, 255",
-        "enderecoResumido": "R. Bartolomeu Paes, 255",
-        "faixaCep": "05",
-        "bairro": "Lapa/Vila anastacio",
-        "regiao": "Zona Oeste",
-        "precoNumero": 322050,
-        "precoTexto": "A partir de R$ 322 mil",
-        "metragemBase": "36,8 m²",
-        "entrega": "01/01/2029"
-    },
-    {
-        "nome": "Barra funda900",
-        "endereco": "R. Barra Funda, 900",
-        "enderecoResumido": "R. Barra Funda, 900",
-        "faixaCep": "01",
-        "bairro": "Barra Funda",
-        "regiao": "Zona Oeste",
-        "precoNumero": 292907,
-        "precoTexto": "A partir de R$ 292 mil",
-        "metragemBase": "32,5 m²",
-        "entrega": "01/03/2029"
-    },
-    {
-        "nome": "Barra funda930",
-        "endereco": "R. Barra Funda, 930",
-        "enderecoResumido": "R. Barra Funda, 930",
-        "faixaCep": "01",
-        "bairro": "Barra Funda",
-        "regiao": "Zona Oeste",
-        "precoNumero": 360000,
-        "precoTexto": "A partir de R$ 360 mil",
-        "metragemBase": "37,86 m²",
-        "entrega": "01/11/2028"
-    },
-    {
-        "nome": "Cidade Vila Lobos Sonata",
-        "endereco": "Endereço não informado",
-        "enderecoResumido": "Endereço não informado",
-        "faixaCep": "05",
-        "bairro": "Jaguaré",
-        "regiao": "Zona Oeste",
-        "precoNumero": 0,
-        "precoTexto": "Preço não informado",
-        "metragemBase": "Metragem não informada",
-        "entrega": "Não informada"
-    },
-    {
-        "nome": "Cidade Vila Lobos - Maestro",
-        "endereco": "Av. Torres de Oliveira, S/N",
-        "enderecoResumido": "Av. Torres de Oliveira, S/N",
-        "faixaCep": "05",
-        "bairro": "Jaguaré",
-        "regiao": "Zona Oeste",
-        "precoNumero": 267910,
-        "precoTexto": "A partir de R$ 267 mil",
-        "metragemBase": "34,81 m²",
-        "entrega": "01/05/2028"
-    },
-    {
-        "nome": "Cidade Vila Lobos -  Soprano",
-        "endereco": "Endereço não informado",
-        "enderecoResumido": "Endereço não informado",
-        "faixaCep": "05",
-        "bairro": "Jaguaré",
-        "regiao": "Zona Oeste",
-        "precoNumero": 0,
-        "precoTexto": "Preço não informado",
-        "metragemBase": "Metragem não informada",
-        "entrega": "01/11/2027"
-    },
-    {
-        "nome": "Cidade Vila Lobos - Condominio Tenor",
-        "endereco": "Av. Onofrio Milani, S/N",
-        "enderecoResumido": "Av. Onofrio Milani, S/N",
-        "faixaCep": "05",
-        "bairro": "Jaguaré",
-        "regiao": "Zona Oeste",
-        "precoNumero": 251835,
-        "precoTexto": "A partir de R$ 251 mil",
-        "metragemBase": "32,42 m²",
-        "entrega": "01/04/2029"
-    },
-    {
-        "nome": "Lyne Agua Branca",
-        "endereco": "R. Comendador Souza, 194",
-        "enderecoResumido": "R. Comendador Souza, 194",
-        "faixaCep": "05",
-        "bairro": "Agua Branca",
-        "regiao": "Zona Oeste",
-        "precoNumero": 296000,
-        "precoTexto": "A partir de R$ 296 mil",
-        "metragemBase": "36,8 m²",
-        "entrega": "01/12/2029"
-    },
-    {
-        "nome": "Nova Leopoldina",
-        "endereco": "Endereço não informado",
-        "enderecoResumido": "Endereço não informado",
-        "faixaCep": "05",
-        "bairro": "Vila Leopoldina",
-        "regiao": "Zona Oeste",
-        "precoNumero": 0,
-        "precoTexto": "Preço não informado",
-        "metragemBase": "Metragem não informada",
-        "entrega": "Não informada"
-    },
-    {
-        "nome": "Cidade Parque Guarapiranga",
-        "endereco": "Av. Do Rio Bonito, 57",
-        "enderecoResumido": "Av. Do Rio Bonito, 57",
-        "faixaCep": "04",
-        "bairro": "Socorro",
-        "regiao": "Zona Sul",
-        "precoNumero": 0,
-        "precoTexto": "Preço não informado",
-        "metragemBase": "Metragem não informada",
-        "entrega": "01/09/2029"
-    },
-    {
-        "nome": "Praça Santo Antonio",
-        "endereco": "R. Braganca Paulista, 845",
-        "enderecoResumido": "R. Braganca Paulista, 845",
-        "faixaCep": "04",
-        "bairro": "Vl. Cruzeiro",
-        "regiao": "Zona Sul",
-        "precoNumero": 325000,
-        "precoTexto": "A partir de R$ 325 mil",
-        "metragemBase": "36,8 m²",
-        "entrega": "01/05/2029"
-    },
-    {
-        "nome": "Parque das Nações Laguna",
-        "endereco": "R. Luiz Seraphico Junior, 326",
-        "enderecoResumido": "R. Luiz Seraphico Junior, 326",
-        "faixaCep": "04",
-        "bairro": "Jd. Caravelas",
-        "regiao": "Zona Sul",
-        "precoNumero": 236012,
-        "precoTexto": "A partir de R$ 236 mil",
-        "metragemBase": "26,56 m²",
-        "entrega": "01/02/2029"
-    },
-    {
-        "nome": "Merito - Vila Mascote",
-        "endereco": "R. Dr. Djalma Pinheiro Franco, S/N",
-        "enderecoResumido": "R. Dr. Djalma Pinheiro Franco, S/N",
-        "faixaCep": "04",
-        "bairro": "Vl. Santa Catarina",
-        "regiao": "Zona Sul",
-        "precoNumero": 294914,
-        "precoTexto": "A partir de R$ 294 mil",
-        "metragemBase": "35 m²",
-        "entrega": "01/11/2027"
-    },
-    {
-        "nome": "Cidade Mooca - Duomo",
-        "endereco": "R. Serra de Paracaína, S/N",
-        "enderecoResumido": "R. Serra de Paracaína, S/N",
-        "faixaCep": "03",
-        "bairro": "Mooca",
-        "regiao": "Zona Leste",
-        "precoNumero": 264343,
-        "precoTexto": "A partir de R$ 264 mil",
-        "metragemBase": "34,6 m²",
-        "entrega": "01/03/2027"
-    },
-    {
-        "nome": "Cidade Mooca - Vila Capri",
-        "endereco": "R. da Mooca, 1300",
-        "enderecoResumido": "R. da Mooca, 1300",
-        "faixaCep": "03",
-        "bairro": "Mooca",
-        "regiao": "Zona Leste",
-        "precoNumero": 362971,
-        "precoTexto": "A partir de R$ 362 mil",
-        "metragemBase": "37,05 m²",
-        "entrega": "01/12/2024"
-    },
-    {
-        "nome": "Condomínio Residencial Dez Canindé",
-        "endereco": "R. Azurita, 48",
-        "enderecoResumido": "R. Azurita, 48",
-        "faixaCep": "03",
-        "bairro": "Canindé",
-        "regiao": "Zona Sul",
-        "precoNumero": 276102,
-        "precoTexto": "A partir de R$ 276 mil",
-        "metragemBase": "34,65 m²",
-        "entrega": "01/11/2023"
-    },
-    {
-        "nome": "Condomínio Residencial Dez Celeste",
-        "endereco": "Av.  Dos Ourives, 840",
-        "enderecoResumido": "Av.  Dos Ourives, 840",
-        "faixaCep": "04",
-        "bairro": "Jd. São Savério",
-        "regiao": "Zona Sul",
-        "precoNumero": 231790,
-        "precoTexto": "A partir de R$ 231 mil",
-        "metragemBase": "34,99 m²",
-        "entrega": "26/04/2026"
-    },
-    {
-        "nome": "Connect São Mateus",
-        "endereco": "R. Andre de Almeida, 2665",
-        "enderecoResumido": "R. Andre de Almeida, 2665",
-        "faixaCep": "03",
-        "bairro": "Parque Colonial",
-        "regiao": "Zona Sul",
-        "precoNumero": 271611,
-        "precoTexto": "A partir de R$ 271 mil",
-        "metragemBase": "34,19 m²",
-        "entrega": "01/09/2025"
-    },
-    {
-        "nome": "Connect São Mateus 2",
-        "endereco": "R. Andre de Almeida, 2665",
-        "enderecoResumido": "R. Andre de Almeida, 2665",
-        "faixaCep": "03",
-        "bairro": "Parque Colonial",
-        "regiao": "Zona Sul",
-        "precoNumero": 0,
-        "precoTexto": "Preço não informado",
-        "metragemBase": "Metragem não informada",
-        "entrega": "01/05/2026"
-    },
-    {
-        "nome": "Dez Limão",
-        "endereco": "R. Rocha lima, 411",
-        "enderecoResumido": "R. Rocha lima, 411",
-        "faixaCep": "02",
-        "bairro": "Vila Diva",
-        "regiao": "Zona Norte",
-        "precoNumero": 305685,
-        "precoTexto": "A partir de R$ 305 mil",
-        "metragemBase": "33,99 m²",
-        "entrega": "01/06/2026"
-    },
-    {
-        "nome": "Green Lyne Pirituba",
-        "endereco": "Av. Paula Ferreira, 3700",
-        "enderecoResumido": "Av. Paula Ferreira, 3700",
-        "faixaCep": "02",
-        "bairro": "Vila Pirituba",
-        "regiao": "Zona Norte",
-        "precoNumero": 228962,
-        "precoTexto": "A partir de R$ 228 mil",
-        "metragemBase": "35,23 m²",
-        "entrega": "01/06/2025"
-    },
-    {
-        "nome": "Like Campo Limpo",
-        "endereco": "R.  Nossa Sra. Do Bom Conselho, S/N",
-        "enderecoResumido": "R.  Nossa Sra. Do Bom Conselho, S/N",
-        "faixaCep": "05",
-        "bairro": "Chacara N. Sra. Do Bom Conselho",
-        "regiao": "Zona Sul",
-        "precoNumero": 386343,
-        "precoTexto": "A partir de R$ 386 mil",
-        "metragemBase": "44,5 m²",
-        "entrega": "01/04/2028"
-    },
-    {
-        "nome": "Lyne Campo Limpo",
-        "endereco": "Av. Carlos Caldeira Filho, S/N",
-        "enderecoResumido": "Av. Carlos Caldeira Filho, S/N",
-        "faixaCep": "05",
-        "bairro": "Jd. Avenida",
-        "regiao": "Zona Sul",
-        "precoNumero": 607675,
-        "precoTexto": "A partir de R$ 607 mil",
-        "metragemBase": "56,31 m²",
-        "entrega": "01/10/2027"
-    },
-    {
-        "nome": "My Sacomã",
-        "endereco": "R. Frans Alt, S/N",
-        "enderecoResumido": "R. Frans Alt, S/N",
-        "faixaCep": "04",
-        "bairro": "Jd. Santa Emilia",
-        "regiao": "Zona Sul",
-        "precoNumero": 325716,
-        "precoTexto": "A partir de R$ 325 mil",
-        "metragemBase": "43,44 m²",
-        "entrega": "01/02/2028"
-    },
-    {
-        "nome": "Soul Miguel Yunes",
-        "endereco": "Av. Miguel Yunes, S/N",
-        "enderecoResumido": "Av. Miguel Yunes, S/N",
-        "faixaCep": "04",
-        "bairro": "Usina Piratininga",
-        "regiao": "Zona Sul",
-        "precoNumero": 180316,
-        "precoTexto": "A partir de R$ 180 mil",
-        "metragemBase": "23,23 m²",
-        "entrega": "01/05/2027"
-    },
-    {
-        "nome": "Urban Tatuapé",
-        "endereco": "R.  Cesario Galeno, 289",
-        "enderecoResumido": "R.  Cesario Galeno, 289",
-        "faixaCep": "03",
-        "bairro": "Tatuape",
-        "regiao": "Zona Leste",
-        "precoNumero": 378272,
-        "precoTexto": "A partir de R$ 378 mil",
-        "metragemBase": "35,48 m²",
-        "entrega": "01/02/2026"
-    },
-    {
-        "nome": "Urban Vila Maria II",
-        "endereco": "R. João Veloso Filho, 1346",
-        "enderecoResumido": "R. João Veloso Filho, 1346",
-        "faixaCep": "02",
-        "bairro": "Vila Guilherme",
-        "regiao": "Zona Norte",
-        "precoNumero": 460072,
-        "precoTexto": "A partir de R$ 460 mil",
-        "metragemBase": "44,86 m²",
-        "entrega": "30/04/2024"
-    },
-    {
-        "nome": "Yunes Park",
-        "endereco": "Av. Miguel Yunes, S/N",
-        "enderecoResumido": "Av. Miguel Yunes, S/N",
-        "faixaCep": "04",
-        "bairro": "Usina piratininga",
-        "regiao": "Zona Sul",
-        "precoNumero": 181249,
-        "precoTexto": "A partir de R$ 181 mil",
-        "metragemBase": "28,8 m²",
-        "entrega": "01/02/2027"
-    }
-];
+  const limparNumero = (valor) => String(valor || "").replace(/\D/g, "");
 
-  const detalhesPorEmpreendimento = {
-    "Alto São Domingos - Mutinga": [
-      {
-        qtd: 19,
-        tipologia: "2 Dorms (meio) sem vaga",
-        metragem: "34,59 m²",
-        faixas: "T01 - 1º ao 17º andar",
-        enquadramento: "HIS2",
-        valor: "R$ 275.815,14",
-        entrega: "30/11/2027",
-      },
-      {
-        qtd: 5,
-        tipologia: "1 Dorm sem vaga",
-        metragem: "34,45 a 34,61 m²",
-        faixas: "Torre 03 - 1º ao 10º andar",
-        enquadramento: "HIS2",
-        valor: "R$ 283.697,59",
-        entrega: "30/11/2027",
-      },
-    ],
-  };
-
-  const totalEmpreendimentos = useMemo(() => empreendimentos.length, []);
-
-  const limparNumero = (valor) => valor.replace(/\D/g, "");
+  const normalizarTexto = (valor) =>
+    String(valor || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
 
   const formatarMoeda = (valor) =>
     new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
       maximumFractionDigits: 0,
-    }).format(valor);
+    }).format(valor || 0);
+
+  const resumoTipologias = (item) => {
+    if (!item.tipologias || item.tipologias.length === 0) {
+      return "Tipologias não cadastradas";
+    }
+
+    return item.tipologias
+      .map((t) => {
+        const area =
+          t.areaMin && t.areaMax
+            ? `${String(t.areaMin).replace(".", ",")} a ${String(t.areaMax).replace(".", ",")} m²`
+            : t.areaMin
+            ? `${String(t.areaMin).replace(".", ",")} m²`
+            : "área não informada";
+
+        return `${t.tipologia || "Tipologia"} • ${area} • Varanda: ${t.varanda || "Não informado"} • Vaga: ${t.vaga || "Não informado"} • ${t.precoTexto || "Preço não informado"}`;
+      })
+      .join(" | ");
+  };
+
+
+  const formatarOpcao = (valor) => {
+    const texto = String(valor || "").trim();
+    const normalizado = normalizarTexto(texto);
+
+    if (!texto || texto === "0") return "Não";
+    if (normalizado === "opcao") return "Opção";
+    if (normalizado === "sim") return "Sim";
+    if (normalizado === "nao") return "Não";
+
+    return texto;
+  };
+
+  const renderTipologias = (item) => {
+    if (!item.tipologias || item.tipologias.length === 0) {
+      return <div style={styles.tipoLinha}>Tipologias não cadastradas</div>;
+    }
+
+    return item.tipologias.map((t, index) => {
+      const area =
+        t.areaMin && t.areaMax
+          ? `${String(t.areaMin).replace(".", ",")} a ${String(t.areaMax).replace(".", ",")} m²`
+          : t.areaMin
+          ? `${String(t.areaMin).replace(".", ",")} m²`
+          : "área não informada";
+
+      return (
+        <div key={index} style={styles.tipoLinha}>
+          <strong>{t.tipologia || "Tipologia"}</strong> • {area} • Varanda:{" "}
+          {formatarOpcao(t.varanda)} • Vaga: {formatarOpcao(t.vaga)} •{" "}
+          {t.precoTexto || "Preço não informado"}
+        </div>
+      );
+    });
+  };
+
+  const menorPrecoTipologias = (item) => {
+    const precos = (item.tipologias || [])
+      .map((t) => Number(t.precoNumero || 0))
+      .filter((valor) => valor > 0);
+
+    if (precos.length === 0) return 0;
+    return Math.min(...precos);
+  };
 
   const buscarEmpreendimentos = () => {
-    const termo = busca.trim().toLowerCase();
-    const cepLimpo = limparNumero(busca);
+    const termoOriginal = busca.trim();
+    const termo = normalizarTexto(termoOriginal);
+    const cepLimpo = limparNumero(termoOriginal);
     const max = precoMaximo ? Number(precoMaximo) : null;
 
-    if (!termo) {
+    if (!termoOriginal) {
       setResultados([]);
-      setMensagem("Digite um CEP, bairro ou região para buscar.");
+      setMensagem("Digite um CEP, bairro, região ou empreendimento para buscar.");
       return;
     }
 
+    const termoSemZona = termo
+      .replace("zona norte", "norte")
+      .replace("zona sul", "sul")
+      .replace("zona leste", "leste")
+      .replace("zona oeste", "oeste")
+      .replace("zona central", "central")
+      .trim();
+
     let encontrados = empreendimentos.filter((item) => {
+      const regiaoNormalizada = normalizarTexto(item.regiao);
+      const bairroNormalizado = normalizarTexto(item.bairro);
+      const nomeNormalizado = normalizarTexto(item.nome);
+
+      const textoCompleto = normalizarTexto(
+        [
+          item.nome,
+          item.construtora,
+          item.regiao,
+          `zona ${item.regiao}`,
+          item.bairro,
+          item.endereco,
+          item.numero,
+          item.cep,
+          item.enderecoCompleto,
+          item.enquadramento,
+          resumoTipologias(item),
+        ].join(" ")
+      );
+
       const bateCep =
         cepLimpo.length >= 2 && item.faixaCep === cepLimpo.substring(0, 2);
 
-      const bateTexto =
-        item.bairro.toLowerCase().includes(termo) ||
-        item.nome.toLowerCase().includes(termo) ||
-        item.regiao.toLowerCase().includes(termo);
+      const bateRegiao =
+        regiaoNormalizada.includes(termoSemZona) ||
+        termoSemZona.includes(regiaoNormalizada);
 
-      return bateCep || bateTexto;
+      const bateBairro =
+        bairroNormalizado.includes(termo) ||
+        bairroNormalizado.includes(termoSemZona);
+
+      const bateNome =
+        nomeNormalizado.includes(termo) ||
+        nomeNormalizado.includes(termoSemZona);
+
+      const bateTexto =
+        textoCompleto.includes(termo) || textoCompleto.includes(termoSemZona);
+
+      return bateCep || bateRegiao || bateBairro || bateNome || bateTexto;
     });
 
     if (max) {
-      encontrados = encontrados.filter((item) => item.precoNumero <= max);
+      encontrados = encontrados.filter((item) => {
+        const preco = Number(item.precoNumero || 0) || menorPrecoTipologias(item);
+        return preco > 0 && preco <= max;
+      });
     }
 
-    encontrados.sort((a, b) => a.precoNumero - b.precoNumero);
+    encontrados.sort((a, b) => {
+      const precoA =
+        Number(a.precoNumero || 0) || menorPrecoTipologias(a) || 999999999;
+      const precoB =
+        Number(b.precoNumero || 0) || menorPrecoTipologias(b) || 999999999;
+      return precoA - precoB;
+    });
 
     setResultados(encontrados);
 
@@ -594,14 +1555,6 @@ export default function App() {
     setPrecoMaximo("");
     setResultados([]);
     setMensagem("Digite um CEP, bairro ou região para buscar empreendimentos.");
-    setEmpreendimentoSelecionado(null);
-  };
-
-  const abrirDetalhes = (empreendimento) => {
-    setEmpreendimentoSelecionado(empreendimento);
-  };
-
-  const voltarLista = () => {
     setEmpreendimentoSelecionado(null);
   };
 
@@ -637,26 +1590,30 @@ export default function App() {
   }
 
   if (empreendimentoSelecionado) {
-    const detalhes =
-      detalhesPorEmpreendimento[empreendimentoSelecionado.nome] || [];
-
     return (
       <div style={styles.page}>
         <div style={styles.container}>
           <div style={styles.headerCard}>
-            <button onClick={voltarLista} style={styles.secondaryButton}>
+            <button
+              onClick={() => setEmpreendimentoSelecionado(null)}
+              style={styles.secondaryButton}
+            >
               ← Voltar
             </button>
 
             <div style={{ marginTop: 18 }}>
               <div style={styles.brandTop}>Detalhamento do empreendimento</div>
-              <h1 style={styles.titleInterna}>{empreendimentoSelecionado.nome}</h1>
+              <h1 style={styles.titleInterna}>
+                {empreendimentoSelecionado.nome}
+              </h1>
+
               <p style={styles.enderecoLinha}>
-                {empreendimentoSelecionado.endereco}
+                {empreendimentoSelecionado.enderecoCompleto}
               </p>
+
               <p style={styles.subtitle}>
-                Bairro: {empreendimentoSelecionado.bairro} • Região:{" "}
-                {empreendimentoSelecionado.regiao}
+                Bairro: {empreendimentoSelecionado.bairro || "Não informado"} • Região:{" "}
+                {empreendimentoSelecionado.regiao || "Não informada"}
               </p>
             </div>
 
@@ -667,67 +1624,85 @@ export default function App() {
                   {empreendimentoSelecionado.precoTexto}
                 </span>
               </div>
+
               <div style={styles.statCard}>
                 <span style={styles.statLabel}>Metragem base</span>
                 <span style={styles.statValueSmall}>
                   {empreendimentoSelecionado.metragemBase}
                 </span>
               </div>
+
               <div style={styles.statCard}>
                 <span style={styles.statLabel}>Entrega</span>
                 <span style={styles.statValueSmall}>
-                  {empreendimentoSelecionado.entrega}
+                  {empreendimentoSelecionado.entrega || "Não informada"}
+                </span>
+              </div>
+
+              <div style={styles.statCard}>
+                <span style={styles.statLabel}>Unidades disponíveis</span>
+                <span style={styles.statValueSmall}>
+                  {empreendimentoSelecionado.unidadesDisponiveis &&
+                  empreendimentoSelecionado.unidadesDisponiveis !== "0"
+                    ? empreendimentoSelecionado.unidadesDisponiveis
+                    : "Não informado"}
                 </span>
               </div>
             </div>
           </div>
 
           <div style={styles.messageBox}>
-            Unidades e faixas agrupadas do empreendimento
+            Tipologias cadastradas para este empreendimento
           </div>
 
-          {detalhes.length === 0 ? (
+          {!empreendimentoSelecionado.tipologias ||
+          empreendimentoSelecionado.tipologias.length === 0 ? (
             <div style={styles.emptyState}>
               <div style={styles.emptyIcon}>📄</div>
-              <h3 style={styles.emptyTitle}>Sem detalhamento cadastrado</h3>
+              <h3 style={styles.emptyTitle}>Sem tipologias cadastradas</h3>
               <p style={styles.emptyText}>
-                Este empreendimento ainda não teve as faixas de unidades
-                lançadas na tela interna.
+                Este empreendimento ainda não tem informações de dormitórios,
+                varanda, vaga, área e preço na aba de tipologias.
               </p>
             </div>
           ) : (
             <div style={styles.detailGrid}>
-              {detalhes.map((item, index) => (
+              {empreendimentoSelecionado.tipologias.map((item, index) => (
                 <div key={index} style={styles.detailCard}>
-                  <div style={styles.detailQty}>Qtd: {item.qtd}</div>
                   <h3 style={styles.detailTitle}>{item.tipologia}</h3>
 
                   <div style={styles.detailRow}>
-                    <span style={styles.detailLabel}>Metragem</span>
-                    <span style={styles.detailValue}>{item.metragem}</span>
-                  </div>
-
-                  <div style={styles.detailRow}>
-                    <span style={styles.detailLabel}>Faixa / Andares</span>
-                    <span style={styles.detailValue}>{item.faixas}</span>
-                  </div>
-
-                  <div style={styles.detailRow}>
-                    <span style={styles.detailLabel}>Enquadramento</span>
+                    <span style={styles.detailLabel}>Área</span>
                     <span style={styles.detailValue}>
-                      {item.enquadramento}
+                      {item.areaMin
+                        ? `${String(item.areaMin).replace(".", ",")} m²`
+                        : "Não informada"}
                     </span>
                   </div>
 
                   <div style={styles.detailRow}>
-                    <span style={styles.detailLabel}>Entrega</span>
-                    <span style={styles.detailValue}>{item.entrega}</span>
+                    <span style={styles.detailLabel}>Varanda</span>
+                    <span style={styles.detailValue}>
+                      {formatarOpcao(item.varanda)}
+                    </span>
+                  </div>
+
+                  <div style={styles.detailRow}>
+                    <span style={styles.detailLabel}>Vaga / Garagem</span>
+                    <span style={styles.detailValue}>
+                      {formatarOpcao(item.vaga)}
+                    </span>
                   </div>
 
                   <div style={styles.divider}></div>
 
                   <div style={styles.priceArea}>
-                    <div style={styles.priceText}>{item.valor}</div>
+                    <div style={styles.priceText}>
+                      {item.precoTexto || "Preço não informado"}
+                    </div>
+                    <div style={styles.priceSub}>
+                      Referência: {item.referencia || "a partir de"}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -749,7 +1724,7 @@ export default function App() {
               <div style={styles.brandTop}>Ferramenta interna do corretor</div>
               <h1 style={styles.title}>Buscador de Empreendimentos</h1>
               <p style={styles.subtitle}>
-                Consulta rápida para atendimento comercial
+                Consulta rápida por CEP, bairro, região ou empreendimento
               </p>
             </div>
           </div>
@@ -770,7 +1745,7 @@ export default function App() {
         <div style={styles.searchPanel}>
           <input
             type="text"
-            placeholder="Digite o CEP, bairro ou região do cliente"
+            placeholder="Digite o CEP, bairro, região ou nome do empreendimento"
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
             onKeyDown={handleEnterBusca}
@@ -809,8 +1784,8 @@ export default function App() {
             <div style={styles.emptyIcon}>🏢</div>
             <h3 style={styles.emptyTitle}>Pronto para consultar</h3>
             <p style={styles.emptyText}>
-              Pesquise por Mooca, Barra Funda, Campo Limpo, Santo André,
-              Tatuapé, Sacomã ou por CEP.
+              Pesquise por Mooca, Belém, Pirituba, Campo Limpo, Zona Leste,
+              Zona Sul ou por CEP.
             </p>
           </div>
         ) : (
@@ -818,32 +1793,40 @@ export default function App() {
             {resultados.map((item, index) => (
               <div key={index} style={styles.card}>
                 <div style={styles.cardTop}>
-                  <span style={styles.regionBadge}>{item.regiao}</span>
+                  <span style={styles.regionBadge}>
+                    {item.regiao || "Região não informada"}
+                  </span>
                 </div>
 
                 <h2 style={styles.cardTitle}>{item.nome}</h2>
 
-                <div style={styles.infoBlock}>
-                  <div style={styles.infoRow}>
-                    <span style={styles.infoLabel}>Bairro</span>
-                    <span style={styles.infoValue}>{item.bairro}</span>
-                  </div>
-
-                  <div style={styles.infoRow}>
-                    <span style={styles.infoLabel}>Faixa CEP</span>
-                    <span style={styles.infoValue}>
-                      {item.faixaCep}xxx-xxx
+                <div style={styles.infoBlockCentral}>
+                  <div style={styles.infoRowColumnCenter}>
+                    <span style={styles.infoLabel}>Endereço</span>
+                    <span style={styles.infoValueCenter}>
+                      {item.enderecoCompleto}
                     </span>
                   </div>
 
-                  <div style={styles.infoRow}>
-                    <span style={styles.infoLabel}>Metragem inicial</span>
-                    <span style={styles.infoValue}>{item.metragemBase}</span>
+                  <div style={styles.infoRowCenter}>
+                    <span style={styles.infoLabel}>Entrega</span>
+                    <span style={styles.infoValueCenter}>
+                      {item.entrega || "Não informada"}
+                    </span>
                   </div>
 
-                  <div style={styles.infoRow}>
-                    <span style={styles.infoLabel}>Entrega</span>
-                    <span style={styles.infoValue}>{item.entrega}</span>
+                  <div style={styles.infoRowCenter}>
+                    <span style={styles.infoLabel}>Unidades disponíveis</span>
+                    <span style={styles.infoValueCenter}>
+                      {item.unidadesDisponiveis && item.unidadesDisponiveis !== "0"
+                        ? item.unidadesDisponiveis
+                        : "Não informado"}
+                    </span>
+                  </div>
+
+                  <div style={styles.infoRowColumnCenter}>
+                    <span style={styles.infoLabel}>Tipologias</span>
+                    <div style={styles.tipoBox}>{renderTipologias(item)}</div>
                   </div>
                 </div>
 
@@ -851,20 +1834,26 @@ export default function App() {
 
                 <div style={styles.priceArea}>
                   <div style={styles.priceText}>{item.precoTexto}</div>
-                  <div style={styles.priceSub}>
-                    Referência: {formatarMoeda(item.precoNumero)}
-                  </div>
+                  {item.precoNumero ? (
+                    <div style={styles.priceSub}>
+                      Referência: {formatarMoeda(item.precoNumero)}
+                    </div>
+                  ) : (
+                    <div style={styles.priceSub}>
+                      Preço ainda não cadastrado na tipologia
+                    </div>
+                  )}
                 </div>
 
                 <button
-                  onClick={() => abrirDetalhes(item)}
+                  onClick={() => setEmpreendimentoSelecionado(item)}
                   style={{
                     ...styles.primaryButton,
                     marginTop: 16,
                     width: "100%",
                   }}
                 >
-                  Ver unidades
+                  Ver tipologias
                 </button>
               </div>
             ))}
@@ -975,6 +1964,7 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "1fr",
     gap: "10px",
+    marginTop: "16px",
   },
   statCard: {
     background: "#f8fbff",
@@ -1140,6 +2130,11 @@ const styles = {
     gap: "12px",
     flexWrap: "wrap",
   },
+  infoRowColumn: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "4px",
+  },
   infoLabel: {
     color: "#64748b",
     fontSize: "13px",
@@ -1148,6 +2143,7 @@ const styles = {
     color: "#0f172a",
     fontSize: "14px",
     fontWeight: "bold",
+    lineHeight: 1.45,
   },
   divider: {
     height: "1px",
@@ -1180,16 +2176,6 @@ const styles = {
     padding: "18px",
     border: "1px solid #e2e8f0",
     boxShadow: "0 12px 28px rgba(15, 23, 42, 0.07)",
-  },
-  detailQty: {
-    display: "inline-block",
-    background: "#eff6ff",
-    color: "#1d4ed8",
-    padding: "7px 10px",
-    borderRadius: "999px",
-    fontSize: "11px",
-    fontWeight: "bold",
-    marginBottom: "12px",
   },
   detailTitle: {
     margin: "0 0 14px",
