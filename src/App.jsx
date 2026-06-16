@@ -213,18 +213,6 @@ export default function App() {
     return valor;
   };
 
-  const formatarOpcao = (valor) => {
-    const texto = String(valor || "").trim();
-    const norm = normalizar(texto);
-
-    if (!texto || texto === "0") return "Não informado";
-    if (norm === "opcao") return "Opção";
-    if (norm === "sim") return "Sim";
-    if (norm === "nao") return "Não";
-
-    return texto;
-  };
-
   if (!liberado) {
     return (
       <div style={styles.loginPage}>
