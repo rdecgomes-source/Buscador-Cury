@@ -268,12 +268,12 @@ export default function App() {
             placeholder="Preço máximo"
             value={precoMaximo}
             onChange={(e) => setPrecoMaximo(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && buscar()}
+            onKeyDown={(e) => e.key === "Enter" && buscarEmpreendimentos()}
             style={styles.input}
           />
 
           <div style={styles.buttonRow}>
-            <button onClick={buscar} style={styles.primaryButton}>
+            <button onClick={buscarEmpreendimentos} style={styles.primaryButton}>
               Buscar
             </button>
             <button onClick={limpar} style={styles.secondaryButton}>
