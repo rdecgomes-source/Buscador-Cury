@@ -249,7 +249,7 @@ export default function App() {
 
         <div style={styles.box}>
           <span>Empreendimentos cadastrados</span>
-          <h2>{carregando ? "Carregando..." : total}</h2>
+          <h2>{empreendimentos.length}</h2>
         </div>
 
         {erro ? <div style={styles.error}>{erro}</div> : null}
