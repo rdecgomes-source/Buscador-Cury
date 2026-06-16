@@ -259,7 +259,7 @@ export default function App() {
             placeholder="Digite CEP, bairro, região ou nome do empreendimento"
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && buscar()}
+            onKeyDown={(e) => e.key === "Enter" && buscarEmpreendimentos()}
             style={styles.input}
           />
 
