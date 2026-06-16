@@ -5,12 +5,14 @@ export default function App() {
   const [liberado, setLiberado] = useState(false);
   const [busca, setBusca] = useState("");
   const [precoMaximo, setPrecoMaximo] = useState("");
+  const [empreendimentos, setEmpreendimentos] = useState([]);
   const [resultados, setResultados] = useState([]);
   const [mensagem, setMensagem] = useState(
-    "Digite um CEP, bairro ou região para buscar empreendimentos."
+    "Digite um CEP, bairro, região ou empreendimento para buscar."
   );
-  const [empreendimentoSelecionado, setEmpreendimentoSelecionado] =
-    useState(null);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState("");
+  const [tipologiasAbertas, setTipologiasAbertas] = useState({});
 
   const senhaCorreta = "master2026";
 
@@ -169,42 +171,58 @@ export default function App() {
       return bateCep || bateRegiao || bateBairro || bateNome || bateTexto;
     });
 
-    if (max) {
-      encontrados = encontrados.filter((item) => {
-        const preco = Number(item.precoNumero || 0) || menorPrecoTipologias(item);
-        return preco > 0 && preco <= max;
-      });
+    if (precoMax) {
+      encontrados = encontrados.filter(
+        (e) => Number(e.precoNumero || 0) > 0 && Number(e.precoNumero) <= precoMax
+      );
     }
 
     encontrados.sort((a, b) => {
-      const precoA =
-        Number(a.precoNumero || 0) || menorPrecoTipologias(a) || 999999999;
-      const precoB =
-        Number(b.precoNumero || 0) || menorPrecoTipologias(b) || 999999999;
-      return precoA - precoB;
+      const pa = Number(a.precoNumero || 999999999);
+      const pb = Number(b.precoNumero || 999999999);
+      return pa - pb;
     });
 
     setResultados(encontrados);
-
-    if (encontrados.length > 0) {
-      setMensagem(`Encontramos ${encontrados.length} empreendimento(s).`);
-    } else {
-      setMensagem("Nenhum empreendimento encontrado com esses filtros.");
-    }
+    setMensagem(
+      encontrados.length
+        ? `Encontramos ${encontrados.length} empreendimento(s).`
+        : "Nenhum empreendimento encontrado."
+    );
   };
 
-  const limparBusca = () => {
+  const limpar = () => {
     setBusca("");
     setPrecoMaximo("");
     setResultados([]);
-    setMensagem("Digite um CEP, bairro ou região para buscar empreendimentos.");
-    setEmpreendimentoSelecionado(null);
+    setTipologiasAbertas({});
+    setMensagem("Digite um CEP, bairro, região ou empreendimento para buscar.");
   };
 
-  const handleEnterBusca = (e) => {
-    if (e.key === "Enter") {
-      buscarEmpreendimentos();
-    }
+  const alternarTipologias = (nome) => {
+    setTipologiasAbertas((atual) => ({
+      ...atual,
+      [nome]: !atual[nome],
+    }));
+  };
+
+  const formatarData = (valor) => {
+    if (!valor) return "Não informada";
+    if (valor.includes("T")) return valor.split("T")[0].split("-").reverse().join("/");
+    if (valor.includes("00:00:00")) return valor.replace(" 00:00:00", "");
+    return valor;
+  };
+
+  const formatarOpcao = (valor) => {
+    const texto = String(valor || "").trim();
+    const norm = normalizar(texto);
+
+    if (!texto || texto === "0") return "Não informado";
+    if (norm === "opcao") return "Opção";
+    if (norm === "sim") return "Sim";
+    if (norm === "nao") return "Não";
+
+    return texto;
   };
 
   if (!liberado) {
@@ -218,139 +236,12 @@ export default function App() {
             placeholder="Digite a senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") verificarSenha();
-            }}
+            onKeyDown={(e) => e.key === "Enter" && verificarSenha()}
             style={styles.input}
           />
-
-          <button style={styles.button} onClick={verificarSenha}>
+          <button onClick={verificarSenha} style={styles.primaryButton}>
             Entrar
           </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (empreendimentoSelecionado) {
-    return (
-      <div style={styles.page}>
-        <div style={styles.container}>
-          <div style={styles.headerCard}>
-            <button
-              onClick={() => setEmpreendimentoSelecionado(null)}
-              style={styles.secondaryButton}
-            >
-              ← Voltar
-            </button>
-
-            <div style={{ marginTop: 18 }}>
-              <div style={styles.brandTop}>Detalhamento do empreendimento</div>
-              <h1 style={styles.titleInterna}>
-                {empreendimentoSelecionado.nome}
-              </h1>
-
-              <p style={styles.enderecoLinha}>
-                {empreendimentoSelecionado.enderecoCompleto}
-              </p>
-
-              <p style={styles.subtitle}>
-                Bairro: {empreendimentoSelecionado.bairro || "Não informado"} • Região:{" "}
-                {empreendimentoSelecionado.regiao || "Não informada"}
-              </p>
-            </div>
-
-            <div style={styles.statsGrid}>
-              <div style={styles.statCard}>
-                <span style={styles.statLabel}>Valor inicial</span>
-                <span style={styles.statValueSmall}>
-                  {empreendimentoSelecionado.precoTexto}
-                </span>
-              </div>
-
-              <div style={styles.statCard}>
-                <span style={styles.statLabel}>Metragem base</span>
-                <span style={styles.statValueSmall}>
-                  {empreendimentoSelecionado.metragemBase}
-                </span>
-              </div>
-
-              <div style={styles.statCard}>
-                <span style={styles.statLabel}>Entrega</span>
-                <span style={styles.statValueSmall}>
-                  {empreendimentoSelecionado.entrega || "Não informada"}
-                </span>
-              </div>
-
-              <div style={styles.statCard}>
-                <span style={styles.statLabel}>Unidades disponíveis</span>
-                <span style={styles.statValueSmall}>
-                  {empreendimentoSelecionado.unidadesDisponiveis &&
-                  empreendimentoSelecionado.unidadesDisponiveis !== "0"
-                    ? empreendimentoSelecionado.unidadesDisponiveis
-                    : "Não informado"}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div style={styles.messageBox}>
-            Tipologias cadastradas para este empreendimento
-          </div>
-
-          {!empreendimentoSelecionado.tipologias ||
-          empreendimentoSelecionado.tipologias.length === 0 ? (
-            <div style={styles.emptyState}>
-              <div style={styles.emptyIcon}>📄</div>
-              <h3 style={styles.emptyTitle}>Sem tipologias cadastradas</h3>
-              <p style={styles.emptyText}>
-                Este empreendimento ainda não tem informações de dormitórios,
-                varanda, vaga, área e preço na aba de tipologias.
-              </p>
-            </div>
-          ) : (
-            <div style={styles.detailGrid}>
-              {empreendimentoSelecionado.tipologias.map((item, index) => (
-                <div key={index} style={styles.detailCard}>
-                  <h3 style={styles.detailTitle}>{item.tipologia}</h3>
-
-                  <div style={styles.detailRow}>
-                    <span style={styles.detailLabel}>Área</span>
-                    <span style={styles.detailValue}>
-                      {item.areaMin
-                        ? `${String(item.areaMin).replace(".", ",")} m²`
-                        : "Não informada"}
-                    </span>
-                  </div>
-
-                  <div style={styles.detailRow}>
-                    <span style={styles.detailLabel}>Varanda</span>
-                    <span style={styles.detailValue}>
-                      {formatarOpcao(item.varanda)}
-                    </span>
-                  </div>
-
-                  <div style={styles.detailRow}>
-                    <span style={styles.detailLabel}>Vaga / Garagem</span>
-                    <span style={styles.detailValue}>
-                      {formatarOpcao(item.vaga)}
-                    </span>
-                  </div>
-
-                  <div style={styles.divider}></div>
-
-                  <div style={styles.priceArea}>
-                    <div style={styles.priceText}>
-                      {item.precoTexto || "Preço não informado"}
-                    </div>
-                    <div style={styles.priceSub}>
-                      Referência: {item.referencia || "a partir de"}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     );
@@ -359,40 +250,28 @@ export default function App() {
   return (
     <div style={styles.page}>
       <div style={styles.container}>
-        <div style={styles.headerCard}>
-          <div style={styles.brandRow}>
-            <div style={styles.brandBadge}>C</div>
-
-            <div style={styles.brandInfo}>
-              <div style={styles.brandTop}>Ferramenta interna do corretor</div>
-              <h1 style={styles.title}>Buscador de Empreendimentos</h1>
-              <p style={styles.subtitle}>
-                Consulta rápida por CEP, bairro, região ou empreendimento
-              </p>
-            </div>
-          </div>
-
-          <div style={styles.statsGrid}>
-            <div style={styles.statCard}>
-              <span style={styles.statLabel}>Empreendimentos</span>
-              <span style={styles.statValue}>{totalEmpreendimentos}</span>
-            </div>
-
-            <div style={styles.statCard}>
-              <span style={styles.statLabel}>Pesquisa</span>
-              <span style={styles.statValue}>CEP / Bairro</span>
-            </div>
+        <div style={styles.header}>
+          <div style={styles.logo}>C</div>
+          <div>
+            <div style={styles.sub}>Ferramenta interna do corretor</div>
+            <h1 style={styles.title}>Buscador de Empreendimentos</h1>
+            <p style={styles.text}>Consulta por CEP, bairro, região ou empreendimento</p>
           </div>
         </div>
 
-        <div style={styles.searchPanel}>
+        <div style={styles.box}>
+          <span>Empreendimentos cadastrados</span>
+          <h2>{carregando ? "Carregando..." : total}</h2>
+        </div>
+
+        {erro ? <div style={styles.error}>{erro}</div> : null}
+
+        <div style={styles.searchBox}>
           <input
-            type="text"
-            placeholder="Digite o CEP, bairro, região ou nome do empreendimento"
+            placeholder="Digite CEP, bairro, região ou nome do empreendimento"
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
-            onKeyDown={handleEnterBusca}
-            enterKeyHint="search"
+            onKeyDown={(e) => e.key === "Enter" && buscar()}
             style={styles.input}
           />
 
@@ -401,26 +280,21 @@ export default function App() {
             placeholder="Preço máximo"
             value={precoMaximo}
             onChange={(e) => setPrecoMaximo(e.target.value)}
-            onKeyDown={handleEnterBusca}
-            enterKeyHint="search"
+            onKeyDown={(e) => e.key === "Enter" && buscar()}
             style={styles.input}
           />
 
           <div style={styles.buttonRow}>
-            <button
-              onClick={buscarEmpreendimentos}
-              style={styles.primaryButton}
-            >
+            <button onClick={buscar} style={styles.primaryButton}>
               Buscar
             </button>
-
-            <button onClick={limparBusca} style={styles.secondaryButton}>
+            <button onClick={limpar} style={styles.secondaryButton}>
               Limpar
             </button>
           </div>
         </div>
 
-        <div style={styles.messageBox}>{mensagem}</div>
+        <div style={styles.message}>{mensagem}</div>
 
         {resultados.length === 0 ? (
           <div style={styles.emptyState}>
@@ -517,334 +391,181 @@ const styles = {
   loginPage: {
     minHeight: "100vh",
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     background: "#f3f5f9",
-    padding: "20px",
+    padding: 20,
   },
   loginBox: {
-    background: "#ffffff",
-    padding: "28px 20px",
-    borderRadius: "20px",
-    boxShadow: "0 14px 30px rgba(15, 23, 42, 0.10)",
-    textAlign: "center",
+    background: "#fff",
+    padding: 24,
+    borderRadius: 20,
     width: "100%",
-    maxWidth: "380px",
+    maxWidth: 360,
+    textAlign: "center",
+    boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
   },
   loginTitle: {
-    marginBottom: "20px",
-    color: "#0f172a",
-    fontSize: "22px",
+    marginBottom: 16,
   },
   page: {
     minHeight: "100vh",
     background:
       "linear-gradient(180deg, #0f3d91 0%, #1e63d6 14%, #f4f7fb 14%, #f4f7fb 100%)",
-    padding: "16px 10px 32px",
+    padding: 16,
     fontFamily: "Arial, sans-serif",
   },
   container: {
-    maxWidth: "1100px",
+    maxWidth: 1000,
     margin: "0 auto",
   },
-  headerCard: {
-    background: "#ffffff",
-    borderRadius: "24px",
-    padding: "18px",
-    boxShadow: "0 16px 34px rgba(15, 23, 42, 0.08)",
-    marginBottom: "16px",
-  },
-  brandRow: {
+  header: {
+    background: "#fff",
+    borderRadius: 22,
+    padding: 20,
     display: "flex",
-    gap: "14px",
+    gap: 14,
     alignItems: "center",
-    marginBottom: "18px",
+    marginBottom: 16,
+    boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
   },
-  brandInfo: {
-    flex: 1,
-  },
-  brandBadge: {
-    width: "56px",
-    height: "56px",
-    borderRadius: "16px",
-    background: "linear-gradient(135deg, #0f3d91, #1e63d6)",
-    color: "#ffffff",
+  logo: {
+    width: 54,
+    height: 54,
+    borderRadius: 14,
+    background: "#0f3d91",
+    color: "#fff",
+    fontSize: 28,
+    fontWeight: "bold",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "28px",
-    fontWeight: "bold",
-    boxShadow: "0 10px 22px rgba(30, 99, 214, 0.25)",
     flexShrink: 0,
   },
-  brandTop: {
-    fontSize: "11px",
+  sub: {
+    fontSize: 11,
     color: "#64748b",
     textTransform: "uppercase",
-    letterSpacing: "0.08em",
-    marginBottom: "6px",
   },
   title: {
-    margin: 0,
-    fontSize: "22px",
-    lineHeight: 1.12,
+    margin: "4px 0",
+    fontSize: 24,
     color: "#0f172a",
   },
-  titleInterna: {
+  text: {
     margin: 0,
-    fontSize: "20px",
-    lineHeight: 1.18,
-    color: "#0f172a",
-  },
-  enderecoLinha: {
-    margin: "8px 0 0",
-    color: "#475569",
-    fontSize: "14px",
-    fontWeight: "bold",
-    lineHeight: 1.4,
-  },
-  subtitle: {
-    margin: "8px 0 0",
     color: "#64748b",
-    fontSize: "14px",
-    lineHeight: 1.4,
   },
-  statsGrid: {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    gap: "10px",
-    marginTop: "16px",
-  },
-  statCard: {
-    background: "#f8fbff",
-    border: "1px solid #d8e4f8",
-    borderRadius: "16px",
-    padding: "14px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "4px",
+  box: {
+    background: "#fff",
+    borderRadius: 18,
+    padding: 18,
     textAlign: "center",
+    marginBottom: 14,
+    border: "1px solid #d8e4f8",
   },
-  statLabel: {
-    fontSize: "12px",
-    color: "#64748b",
-  },
-  statValue: {
-    fontSize: "18px",
-    fontWeight: "bold",
-    color: "#0f172a",
-  },
-  statValueSmall: {
-    fontSize: "17px",
-    fontWeight: "bold",
-    color: "#0f172a",
-  },
-  searchPanel: {
-    background: "#ffffff",
-    borderRadius: "20px",
-    padding: "14px",
-    boxShadow: "0 10px 28px rgba(15, 23, 42, 0.07)",
-    marginBottom: "14px",
+  searchBox: {
+    background: "#fff",
+    borderRadius: 18,
+    padding: 14,
+    marginBottom: 14,
+    boxShadow: "0 10px 24px rgba(0,0,0,0.05)",
   },
   input: {
     width: "100%",
-    boxSizing: "border-box",
-    padding: "14px 14px",
-    borderRadius: "14px",
+    padding: 14,
+    borderRadius: 14,
     border: "1px solid #cfdced",
-    fontSize: "16px",
-    outline: "none",
-    background: "#ffffff",
-    color: "#0f172a",
-    marginBottom: "10px",
+    fontSize: 16,
+    marginBottom: 10,
+    boxSizing: "border-box",
   },
   buttonRow: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-    gap: "10px",
-    marginTop: "4px",
+    gap: 10,
   },
   primaryButton: {
-    padding: "14px 16px",
-    borderRadius: "14px",
+    padding: 14,
+    borderRadius: 14,
     border: "none",
-    background: "linear-gradient(135deg, #0f3d91, #1e63d6)",
-    color: "#ffffff",
-    fontSize: "15px",
+    background: "#1455c8",
+    color: "#fff",
     fontWeight: "bold",
     cursor: "pointer",
-    boxShadow: "0 10px 22px rgba(30, 99, 214, 0.22)",
   },
   secondaryButton: {
-    padding: "14px 16px",
-    borderRadius: "14px",
+    padding: 14,
+    borderRadius: 14,
     border: "1px solid #cfdced",
-    background: "#ffffff",
-    color: "#0f172a",
-    fontSize: "15px",
+    background: "#fff",
     fontWeight: "bold",
     cursor: "pointer",
   },
-  button: {
-    width: "100%",
-    padding: "14px 16px",
-    borderRadius: "14px",
-    border: "none",
-    background: "linear-gradient(135deg, #0f3d91, #1e63d6)",
-    color: "#ffffff",
-    fontSize: "15px",
-    fontWeight: "bold",
-    cursor: "pointer",
-  },
-  messageBox: {
-    background: "#ffffff",
-    border: "1px solid #d8e4f8",
-    borderRadius: "16px",
-    padding: "12px 14px",
+  message: {
+    background: "#fff",
+    borderRadius: 14,
+    padding: 12,
     textAlign: "center",
-    color: "#1e293b",
     fontWeight: "bold",
-    boxShadow: "0 8px 22px rgba(15, 23, 42, 0.05)",
-    marginBottom: "14px",
-    fontSize: "14px",
+    marginBottom: 14,
   },
-  emptyState: {
-    background: "#ffffff",
-    borderRadius: "22px",
-    padding: "34px 18px",
+  error: {
+    background: "#fee2e2",
+    color: "#991b1b",
+    borderRadius: 14,
+    padding: 12,
     textAlign: "center",
-    boxShadow: "0 14px 30px rgba(15, 23, 42, 0.08)",
-  },
-  emptyIcon: {
-    width: "82px",
-    height: "82px",
-    borderRadius: "999px",
-    margin: "0 auto 16px",
-    background: "#eef4ff",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "34px",
-  },
-  emptyTitle: {
-    margin: 0,
-    fontSize: "24px",
-    color: "#0f172a",
-  },
-  emptyText: {
-    marginTop: "10px",
-    color: "#64748b",
-    fontSize: "15px",
-    lineHeight: 1.5,
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    gap: "14px",
+    fontWeight: "bold",
+    marginBottom: 14,
   },
   card: {
-    background: "#ffffff",
-    borderRadius: "20px",
-    padding: "18px",
-    border: "1px solid #e2e8f0",
-    boxShadow: "0 12px 28px rgba(15, 23, 42, 0.07)",
+    background: "#fff",
+    borderRadius: 20,
+    padding: 18,
+    marginBottom: 14,
+    textAlign: "center",
+    boxShadow: "0 12px 26px rgba(0,0,0,0.07)",
   },
-  cardTop: {
-    display: "flex",
-    justifyContent: "flex-end",
-    marginBottom: "10px",
-  },
-  regionBadge: {
+  badge: {
     background: "#e8f0ff",
     color: "#0f3d91",
     padding: "8px 12px",
-    borderRadius: "999px",
-    fontSize: "11px",
+    borderRadius: 999,
+    fontSize: 12,
     fontWeight: "bold",
   },
   cardTitle: {
-    margin: "0 0 14px",
-    fontSize: "24px",
     color: "#0f172a",
-    lineHeight: 1.14,
+    marginTop: 14,
   },
-  infoBlock: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-  },
-  infoRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: "12px",
-    flexWrap: "wrap",
-  },
-  infoRowColumn: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "4px",
-  },
-  infoLabel: {
-    color: "#64748b",
-    fontSize: "13px",
-  },
-  infoValue: {
-    color: "#0f172a",
-    fontSize: "14px",
-    fontWeight: "bold",
-    lineHeight: 1.45,
-  },
-  divider: {
-    height: "1px",
-    background: "#e5e7eb",
-    margin: "16px 0",
-  },
-  priceArea: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "6px",
-  },
-  priceText: {
-    fontSize: "24px",
-    fontWeight: "bold",
+  price: {
     color: "#059669",
-    lineHeight: 1.1,
+    marginTop: 14,
   },
-  priceSub: {
-    fontSize: "13px",
-    color: "#64748b",
-  },
-  detailGrid: {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    gap: "14px",
-  },
-  detailCard: {
-    background: "#ffffff",
-    borderRadius: "20px",
-    padding: "18px",
-    border: "1px solid #e2e8f0",
-    boxShadow: "0 12px 28px rgba(15, 23, 42, 0.07)",
-  },
-  detailTitle: {
-    margin: "0 0 14px",
-    fontSize: "22px",
-    color: "#0f172a",
-    lineHeight: 1.2,
-  },
-  detailRow: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "4px",
-    marginBottom: "10px",
-  },
-  detailLabel: {
-    color: "#64748b",
-    fontSize: "12px",
-  },
-  detailValue: {
-    color: "#0f172a",
-    fontSize: "14px",
+  tipologiaButton: {
+    width: "100%",
+    padding: 12,
+    borderRadius: 14,
+    border: "none",
+    background: "#1455c8",
+    color: "#fff",
     fontWeight: "bold",
+    cursor: "pointer",
+    marginTop: 10,
+  },
+  tipologiaBox: {
+    marginTop: 14,
+    borderTop: "1px solid #e5e7eb",
+    paddingTop: 14,
+  },
+  tipologiaLinha: {
+    background: "#f8fbff",
+    border: "1px solid #d8e4f8",
+    borderRadius: 12,
+    padding: 10,
+    marginTop: 8,
+    fontSize: 14,
+    lineHeight: 1.6,
   },
 };
