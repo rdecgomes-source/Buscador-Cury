@@ -10,7 +10,7 @@ export default function App() {
   const [mensagem, setMensagem] = useState(
     "Digite um CEP, bairro, região ou empreendimento para buscar."
   );
-  const [carregando, setCarregando] = useState(true);
+  const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState("");
   const [tipologiasAbertas, setTipologiasAbertas] = useState({});
 
