@@ -5,7 +5,7 @@ export default function App() {
   const [liberado, setLiberado] = useState(false);
   const [busca, setBusca] = useState("");
   const [precoMaximo, setPrecoMaximo] = useState("");
-  const [empreendimentos, setEmpreendimentos] = useState([]);
+  const [empreendimentosLista, setEmpreendimentosLista] = useState(empreendimentos);
   const [resultados, setResultados] = useState([]);
   const [mensagem, setMensagem] = useState(
     "Digite um CEP, bairro, região ou empreendimento para buscar."
@@ -126,7 +126,7 @@ export default function App() {
       .replace("zona central", "central")
       .trim();
 
-    let encontrados = empreendimentos.filter((item) => {
+    let encontrados = empreendimentosLista.filter((item) => {
       const regiaoNormalizada = normalizarTexto(item.regiao);
       const bairroNormalizado = normalizarTexto(item.bairro);
       const nomeNormalizado = normalizarTexto(item.nome);
@@ -249,7 +249,7 @@ export default function App() {
 
         <div style={styles.box}>
           <span>Empreendimentos cadastrados</span>
-          <h2>{empreendimentos.length}</h2>
+          <h2>{empreendimentosLista.length}</h2>
         </div>
 
         {erro ? <div style={styles.error}>{erro}</div> : null}
