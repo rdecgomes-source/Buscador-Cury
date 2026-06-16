@@ -171,7 +171,7 @@ export default function App() {
       return bateCep || bateRegiao || bateBairro || bateNome || bateTexto;
     });
 
-    if (precoMax) {
+    if (precoMaximo) {
       encontrados = encontrados.filter(
         (e) => Number(e.precoNumero || 0) > 0 && Number(e.precoNumero) <= precoMax
       );
